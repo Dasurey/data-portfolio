@@ -1,0 +1,59 @@
+{
+  "Home": {
+    "role": "Data Engineer & Architect",
+    "heroTitle": "Building robust",
+    "heroTitleItalic": "data ecosystems.",
+    "heroDescription": "I help companies transform chaotic data flows into scalable, secure, and analysis-ready architectures.",
+    "selectedWorks": "Selected Works",
+    "viewAll": "View all",
+    "noProjects": "No projects published yet.",
+    "architecture": "Architecture",
+    "createFirst": "+ Create first project"
+  },
+  "About": {
+    "title": "Hi, I'm Dario Asurey",
+    "subtitle": "Specializing in scalable data infrastructures.",
+    "description": "I've been designing architectures that enable companies to make decisions based on evidence, not intuition, for over 5 years.",
+    "experience": "Professional Experience",
+    "present": "Present",
+    "kicker": "About Me",
+    "lead": "Data Engineer and Analyst. I lead data architectures and generative AI workflows.",
+    "bio1": "Here goes the first paragraph of your story extracted from your repository...",
+    "bio2": "Here goes the second paragraph where you talk about your current experience...",
+    "experienceKicker": "Experience",
+    "experienceTitle": "From a degree in Mathematics to Generative AI",
+    "experienceSub": "Expand a position to see what I built there.",
+    "current": "Present",
+    "badgeCurrent": "Current"
+  },
+  "Metadata": {
+    "title": "Portfolio",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+  },
+  "Common": {
+    "skipToContent": "Skip to content"
+  },
+  "Header": {
+    "role": "Lorem ipsum dolor"
+  },
+  "Nav": {
+    "label": "Main navigation",
+    "menu": "Menu",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects"
+  },
+  "LanguageSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "es": "Español"
+  },
+  "Footer": {
+    "blurb": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "pages": "Pages",
+    "elsewhere": "Elsewhere",
+    "external": "(opens in a new tab)",
+    "rights": "All rights reserved.",
+    "built": "Lorem ipsum dolor sit amet."
+  }
+}

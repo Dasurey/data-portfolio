@@ -1,53 +1,78 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getTranslations } from 'next-intl/server';
+import type { ReactNode } from 'react';
 
-import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
-import React from 'react'
+import { Footer } from '@/components/layout/Footer';
+import { Header } from '@/components/layout/Header';
+import { SITE_NAME } from '@/config/site';
 
-import { AdminBar } from '@/components/AdminBar'
-import { Footer } from '@/Footer/Component'
-import { Header } from '@/Header/Component'
-import { Providers } from '@/providers'
-import { InitTheme } from '@/providers/Theme/InitTheme'
-import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
-import { draftMode } from 'next/headers'
+import './globals.css';
 
-import './globals.css'
-import { getServerSideURL } from '@/utilities/getURL'
+/**
+ * Layout del FRONTEND. Vive en el route group (frontend) y no en app/layout.tsx
+ * porque el admin de Payload ((payload)/layout.tsx) trae su propio layout raíz.
+ * Los paréntesis no forman parte de la URL: siguen siendo /, /about y /projects.
+ */
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const { isEnabled } = await draftMode()
+// Lectura: Inter. Stack técnico y fechas: JetBrains Mono.
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
-  return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
-      <head>
-        <InitTheme />
-        <link href="/favicon.ico" rel="icon" sizes="32x32" />
-        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-      </head>
-      <body>
-        <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
 
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
-      </body>
-    </html>
-  )
+// generateMetadata (y no `export const metadata`): las traducciones dependen
+// de la cookie, que solo existe dentro del ámbito de la request.
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Metadata');
+
+  return {
+    title: {
+      default: `${SITE_NAME} — ${t('title')}`,
+      template: `%s | ${SITE_NAME}`,
+    },
+    description: t('description'),
+  };
 }
 
-export const metadata: Metadata = {
-  metadataBase: new URL(getServerSideURL()),
-  openGraph: mergeOpenGraph(),
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@payloadcms',
-  },
+export const viewport: Viewport = {
+  colorScheme: 'light', // light mode puro
+  themeColor: '#ffffff',
+};
+
+export default async function FrontendLayout({ children }: { children: ReactNode }) {
+  const locale = await getLocale();
+  const t = await getTranslations('Common');
+
+  return (
+    <html lang={locale} className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+      <body className="flex min-h-dvh flex-col bg-white font-sans text-slate-900 antialiased">
+        {/* Hereda locale y messages de i18n/request.ts sin pasar props */}
+        <NextIntlClientProvider>
+          <a
+            href="#main"
+            className="fixed left-4 top-4 z-50 -translate-y-20 rounded-md bg-slate-900 px-4 py-2 text-sm text-white transition-transform focus:translate-y-0 motion-reduce:transition-none"
+          >
+            {t('skipToContent')}
+          </a>
+
+          <Header />
+
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+
+          <Footer />
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
 }
