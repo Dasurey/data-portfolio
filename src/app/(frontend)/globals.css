@@ -71,3 +71,14 @@ html {
     cursor: pointer;
   }
 }
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgb(61 220 132 / 0.55); }
+  50% { opacity: 0.75; box-shadow: 0 0 0 5px rgb(61 220 132 / 0); }
+}
+
+@keyframes flowDown {
+  0% { transform: translateY(0); opacity: 0; }
+  15%, 85% { opacity: 1; }
+  100% { transform: translateY(26px); opacity: 0; }
+}

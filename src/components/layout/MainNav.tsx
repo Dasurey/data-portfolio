@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useState, type ReactNode } from 'react';
 
 import { Container } from '@/components/ui/Container';
-import { NAV_ITEMS } from '@/config/site';
+import { NAV_ITEMS, RESUME_URL } from '@/config/site';
 
 const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
 
@@ -51,6 +51,18 @@ export function MainNav({ children }: { children?: ReactNode }) {
 
       {children}
 
+      {/* Desktop: .nav-resume */}
+      {RESUME_URL && (
+        <a
+          href={RESUME_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden rounded-full bg-brand px-[22px] py-2.5 text-[14.5px] font-semibold leading-normal text-white shadow-[0_6px_18px_-6px_rgba(79,70,229,0.6)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgba(79,70,229,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:inline-block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          {t('resume')}
+        </a>
+      )}
+
       {/* Móvil: .nav-toggle */}
       <button
         type="button"
@@ -93,6 +105,18 @@ export function MainNav({ children }: { children?: ReactNode }) {
               );
             })}
           </ul>
+          {/* Móvil: .nav-resume */}
+          {RESUME_URL && (
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-2 block rounded-full bg-brand px-[22px] py-2.5 text-center text-[14.5px] font-semibold text-white shadow-[0_6px_18px_-6px_rgba(79,70,229,0.6)]"
+            >
+              {t('resume')}
+            </a>
+          )}
         </Container>
       </nav>
     </div>

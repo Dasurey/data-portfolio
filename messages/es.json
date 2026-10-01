@@ -8,7 +8,33 @@
     "viewAll": "Ver todos",
     "noProjects": "Aún no hay proyectos publicados.",
     "architecture": "Arquitectura",
-    "createFirst": "+ Crear primer proyecto"
+    "createFirst": "+ Crear primer proyecto",
+    "resume": "Currículum",
+    "built": "Hecho con Next.js, Payload CMS y Neon",
+    "viewPortfolio": "Ver portafolio",
+    "stat1Num": "SQL · Python",
+    "stat1Label": "Stack analítico principal",
+    "stat2Num": "ETL",
+    "stat2Label": "Pipelines y modelado",
+    "stat3Num": "BI",
+    "stat3Label": "Dashboards y reportes",
+    "diagram": {
+      "label": "plataforma de datos · arquitectura",
+      "live": "en vivo",
+      "sourceEyebrow": "origen",
+      "sourceTitle": "Sistemas operativos y archivos",
+      "transportEyebrow": "ingesta",
+      "transportTitle": "ETL en Python → Data warehouse",
+      "node1": "Modelado de datos",
+      "node1Sub": "esquema estrella",
+      "node2": "Controles de calidad",
+      "node2Sub": "validación",
+      "node3": "Capa de reportes",
+      "node3Sub": "SQL · BI",
+      "finalEyebrow": "entregado al negocio",
+      "finalTitle": "Dashboards listos para decidir",
+      "caption": "La forma de los proyectos de abajo: datos crudos de entrada, información confiable de salida."
+    }
   },
   "About": {
     "title": "Hola, soy Dario Asurey",
@@ -43,7 +69,8 @@
     "menu": "Menú",
     "home": "Inicio",
     "about": "Sobre mí",
-    "projects": "Proyectos"
+    "projects": "Proyectos",
+    "resume": "Currículum"
   },
   "LanguageSwitcher": {
     "label": "Idioma",

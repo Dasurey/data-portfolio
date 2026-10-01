@@ -210,7 +210,19 @@ export interface Experience {
    * Dejar vacío si es el trabajo actual
    */
   endDate?: string | null;
-  description: string;
+  /**
+   * Opcional: un párrafo corto de introducción. Los puntos van en "Highlights".
+   */
+  description?: string | null;
+  /**
+   * Una fila por punto. Se muestran como viñetas y se reordenan arrastrando.
+   */
+  highlights?:
+    | {
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   stack?:
     | {
         name?: string | null;
@@ -408,6 +420,12 @@ export interface ExperienceSelect<T extends boolean = true> {
   startDate?: T;
   endDate?: T;
   description?: T;
+  highlights?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
   stack?:
     | T
     | {

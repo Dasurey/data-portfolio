@@ -8,7 +8,33 @@
     "viewAll": "View all",
     "noProjects": "No projects published yet.",
     "architecture": "Architecture",
-    "createFirst": "+ Create first project"
+    "createFirst": "+ Create first project",
+    "resume": "Résumé",
+    "built": "Built with Next.js, Payload CMS & Neon",
+    "viewPortfolio": "View portfolio",
+    "stat1Num": "SQL · Python",
+    "stat1Label": "Core analytics stack",
+    "stat2Num": "ETL",
+    "stat2Label": "Pipelines & modeling",
+    "stat3Num": "BI",
+    "stat3Label": "Dashboards & reporting",
+    "diagram": {
+      "label": "data platform · architecture",
+      "live": "live",
+      "sourceEyebrow": "source",
+      "sourceTitle": "Operational systems & files",
+      "transportEyebrow": "ingestion",
+      "transportTitle": "Python ETL → Data warehouse",
+      "node1": "Data modeling",
+      "node1Sub": "star schema",
+      "node2": "Quality checks",
+      "node2Sub": "validation",
+      "node3": "Reporting layer",
+      "node3Sub": "SQL · BI",
+      "finalEyebrow": "delivered to the business",
+      "finalTitle": "Decision-ready dashboards",
+      "caption": "The shape of the projects below: raw data in, trusted insight out."
+    }
   },
   "About": {
     "title": "Hi, I'm Dario Asurey",
@@ -43,7 +69,8 @@
     "menu": "Menu",
     "home": "Home",
     "about": "About",
-    "projects": "Projects"
+    "projects": "Projects",
+    "resume": "Résumé"
   },
   "LanguageSwitcher": {
     "label": "Language",

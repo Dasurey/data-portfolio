@@ -2,9 +2,9 @@
  * Fuente única de verdad para marca, navegación y contacto.
  * Más adelante estos datos migran a un Global de Payload (SiteSettings).
  */
-export const SITE_NAME = 'Your Name'
-export const SITE_INITIALS = 'YN'
-export const CONTACT_EMAIL = 'hello@example.com'
+export const SITE_NAME = 'Dario Asurey';
+export const SITE_INITIALS = 'DA';
+export const CONTACT_EMAIL = 'dario.asurey@gmail.com';
 
 // null = no se muestra. Poné el archivo en /public y la ruta acá.
 export const PROFILE_PHOTO: string | null = '/foto_profesional_filtro_recortada.png'

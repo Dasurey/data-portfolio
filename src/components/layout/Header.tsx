@@ -19,7 +19,7 @@ export async function Header() {
         <Link href="/" className={`inline-flex items-center gap-3 rounded-md ${focusRing}`}>
           <span
             aria-hidden="true"
-            className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-brand font-mono text-sm font-semibold text-white shadow-[0_6px_16px_-7px_rgba(79,70,229,0.7)]"
+            className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-brand font-display text-base font-bold text-white shadow-[0_6px_16px_-7px_rgba(79,70,229,0.7)]"
           >
             {SITE_INITIALS}
           </span>
