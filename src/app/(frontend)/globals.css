@@ -51,3 +51,23 @@ html {
     scroll-behavior: auto;
   }
 }
+
+@theme {
+  --color-node: #c9cde0; /* borde del nodo del timeline */
+}
+
+/* .grid-bg de la base: líneas finas cada 64px sobre el fondo tint (#f7f8fc) */
+@utility bg-grid {
+  background-color: #f7f8fc;
+  background-image:
+    linear-gradient(rgb(23 26 38 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(23 26 38 / 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Tailwind 4 deja los botones con cursor por defecto */
+@layer base {
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}

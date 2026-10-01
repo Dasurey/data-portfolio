@@ -1,79 +1,125 @@
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
-import { getTranslations, getLocale } from 'next-intl/server'
-import Image from 'next/image'
-import { Container } from '@/components/ui/Container'
-import { ExperienceItem } from '@/components/layout/ExperienceItem'
+import Image from 'next/image';
+import Link from 'next/link';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { getPayload } from 'payload';
+import configPromise from '@payload-config';
 
+import { ExperienceItem } from '@/components/layout/ExperienceItem';
+import { Container } from '@/components/ui/Container';
+import { PROFILE_PHOTO, RESUME_URL, SITE_INITIALS, SITE_NAME } from '@/config/site';
+import type { Locale } from '@/i18n/config';
+
+const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
+const photoClass = 'aspect-square w-full rounded-[18px] shadow-[0_22px_50px_-24px_rgba(23,26,38,0.45)]';
+
+// Sin <main> propio: el layout ya lo provee.
 export default async function AboutPage() {
-  const locale = await getLocale()
-  const t = await getTranslations('About')
-  const payload = await getPayload({ config: configPromise })
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations('About');
+  const payload = await getPayload({ config: configPromise });
 
   const { docs: experience } = await payload.find({
     collection: 'experience',
     sort: '-startDate',
-    locale: locale as any,
-  })
+    locale,
+  });
 
   return (
-    <main className="flex flex-col">
-      {/* SECCIÓN INTRO con grid-bg */}
-      <section className="border-b border-[#e8eaf2] bg-[#f7f8fc] bg-[radial-gradient(#171a26_1px,transparent_1px)] [background-size:64px_64px] [background-position:center] opacity-[0.98]">
-        <Container className="py-16 md:py-24">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr]">
-            <div className="flex flex-col justify-center">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#4f46e5] mb-4">
-                {t('kicker')}
-              </span>
-              <h1 className="font-display text-4xl font-bold tracking-tight text-[#171a26] sm:text-6xl md:text-7xl">
-                {t('title')}
-              </h1>
-              <p className="mt-8 font-display text-xl leading-relaxed text-[#171a26] sm:text-2xl">
-                {t('lead')}
-              </p>
-            </div>
-            
-            <div className="flex flex-col gap-8">
-              <div className="space-y-6 text-lg text-[#4a5163]">
-                <p>{t('bio1')}</p>
-                <p>{t('bio2')}</p>
+    <>
+      {/* Intro: .grid-bg + .pad-intro de la base */}
+      <section className="border-b border-line bg-grid">
+        <Container className="pb-[52px] pt-11 sm:pb-16 sm:pt-[58px]">
+          {/* .intro-head */}
+          <div className="mb-11 max-w-[70ch]">
+            <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">{t('kicker')}</p>
+            <h1 className="mb-[18px] font-display text-[2.6rem] font-bold leading-[1.04] tracking-[-0.035em] text-ink sm:text-[3.4rem]">
+              {t('title')}
+            </h1>
+            <p className="max-w-[46ch] text-pretty font-display text-[1.32rem] leading-[1.45] tracking-[-0.018em] text-ink">
+              {t('lead')}
+            </p>
+          </div>
+
+          {/* .intro-grid: foto + botones | bio */}
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-9 lg:grid-cols-[330px_minmax(0,1fr)] lg:gap-14">
+            <div>
+              {PROFILE_PHOTO ? (
+                <Image
+                  src={PROFILE_PHOTO}
+                  alt={SITE_NAME}
+                  width={660}
+                  height={660}
+                  priority
+                  className={`${photoClass} object-cover object-[center_18%]`}
+                />
+              ) : (
+                <div
+                  aria-hidden="true"
+                  className={`${photoClass} grid place-items-center bg-brand font-display text-6xl font-bold text-white`}
+                >
+                  {SITE_INITIALS}
+                </div>
+              )}
+
+              {/* .intro-btns */}
+              <div className="mt-4 flex gap-2.5">
+                <Link
+                  href="/projects"
+                  className={`flex-1 rounded-full bg-brand px-[18px] py-3 text-center text-[0.9rem] font-semibold leading-normal text-white shadow-[0_8px_22px_-8px_rgba(79,70,229,0.55)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-10px_rgba(79,70,229,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${focusRing}`}
+                >
+                  {t('selectedWork')}
+                </Link>
+
+                {RESUME_URL && (
+                  <a
+                    href={RESUME_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`rounded-full border-[1.5px] border-line-strong bg-white px-5 py-[11px] text-center text-[0.9rem] font-semibold leading-normal text-accent transition-colors hover:border-accent motion-reduce:transition-none ${focusRing}`}
+                  >
+                    {t('resume')}
+                  </a>
+                )}
               </div>
             </div>
+
+            {/* .intro-body */}
+            <div className="space-y-[18px] pt-1 text-[1.04rem] text-ink-soft">
+              <p className="max-w-[64ch] text-pretty">{t('bio1')}</p>
+              <p className="max-w-[64ch] text-pretty">{t('bio2')}</p>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* SECCIÓN EXPERIENCIA */}
-      <section className="bg-white py-16 md:py-24">
-        <Container>
-          <div className="mb-16 border-b border-[#e8eaf2] pb-8">
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-[#4f46e5] mb-4 block">
-              {t('experienceKicker')}
-            </span>
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <h2 className="font-display text-3xl font-bold tracking-tight text-[#171a26] sm:text-4xl">
+      {/* Experiencia: .pad-exp + .sechead--exp + .timeline */}
+      <section>
+        <Container className="pb-16 pt-[52px] sm:pb-20 sm:pt-[66px]">
+          <div className="mb-2.5 flex flex-col items-start gap-[11px] border-b border-line pb-[22px]">
+            <div>
+              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                {t('experienceKicker')}
+              </p>
+              <h2 className="text-balance font-display text-[1.8rem] font-bold leading-[1.15] tracking-[-0.03em] text-ink sm:text-[2.3rem]">
                 {t('experienceTitle')}
               </h2>
-              <p className="text-[#6b7385] font-medium">{t('experienceSub')}</p>
             </div>
+            <p className="max-w-[58ch] text-pretty text-[0.98rem] text-muted">{t('experienceSub')}</p>
           </div>
 
-          <div className="mx-auto max-w-4xl">
-            <div className="flex flex-col">
-              {experience.map((item, index) => (
-                <ExperienceItem 
-                  key={item.id} 
-                  item={item} 
-                  isFirst={index === 0}
-                  tPresent={t('current')}
-                  tBadge={t('badgeCurrent')}
-                />
-              ))}
-            </div>
+          <div className="max-w-[920px]">
+            {experience.map((item, index) => (
+              <ExperienceItem
+                key={item.id}
+                item={item}
+                isLast={index === experience.length - 1}
+                nowLabel={t('current')}
+                currentLabel={t('badgeCurrent')}
+              />
+            ))}
           </div>
         </Container>
       </section>
-    </main>
-  )
+    </>
+  );
 }

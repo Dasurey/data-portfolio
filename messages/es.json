@@ -23,7 +23,9 @@
     "experienceKicker": "Experiencia",
     "experienceTitle": "De grado en Matemáticas a IA Generativa",
     "experienceSub": "Expande un cargo para ver qué construí allí.",
-    "current": "Actualidad",
+    "current": "hoy",
+    "selectedWork": "Trabajos destacados",
+    "resume": "Currículum",
     "badgeCurrent": "Actual"
   },
   "Metadata": {

@@ -23,7 +23,9 @@
     "experienceKicker": "Experience",
     "experienceTitle": "From a degree in Mathematics to Generative AI",
     "experienceSub": "Expand a position to see what I built there.",
-    "current": "Present",
+    "current": "now",
+    "selectedWork": "Selected work",
+    "resume": "Résumé",
     "badgeCurrent": "Current"
   },
   "Metadata": {
