@@ -1,17 +1,53 @@
 @import 'tailwindcss';
 
-/*
- * next/font inyecta --font-inter y --font-jetbrains-mono en <html>.
- * `inline` hace que Tailwind resuelva esas variables dentro de cada utilidad:
- *   font-sans → Inter (lectura)
- *   font-mono → JetBrains Mono (stack técnico, fechas, email)
- */
+/* next/font inyecta estas variables en <html> (ver layout.tsx) */
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* Light mode puro: el navegador no debe invertir formularios ni scrollbars. */
+/* Tokens de base-de-portafolio/css/chrome.css.
+   Generan utilidades: text-ink, bg-tint, border-line, bg-dark, text-accent... */
+@theme {
+  --color-ink: #171a26;
+  --color-ink-soft: #4a5163;
+  --color-muted: #6b7385;
+  --color-line: #e8eaf2;
+  --color-line-strong: #e0e2f0;
+  --color-tint: #f7f8fc;
+  --color-accent: #4f46e5;
+  --color-accent-2: #7c3aed;
+  --color-accent-ink: #3730a3;
+  --color-dark: #12141f;
+  --color-dark-soft: #7c8296;
+  --color-dark-link: #9aa1b4;
+  --color-index: #a8adbf;
+  --color-live: #3ddc84;
+  --shadow-soft: 0 1px 2px rgb(23 26 38 / 0.06), 0 2px 8px rgb(23 26 38 / 0.05);
+  --shadow-lift: 0 10px 30px -12px rgb(23 26 38 / 0.22);
+}
+
+/* --grad de la base: 120deg, indigo → violeta */
+@utility bg-brand {
+  background-image: linear-gradient(120deg, #4f46e5 0%, #7c3aed 100%);
+}
+
+/* Light mode puro */
 :root {
   color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgb(79 70 229 / 0.16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

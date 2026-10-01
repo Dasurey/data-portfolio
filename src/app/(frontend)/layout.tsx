@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
@@ -29,6 +29,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+// Display de la base (títulos, nombre de marca). Solo títulos: la lectura sigue en Inter.
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+});
+
 // generateMetadata (y no `export const metadata`): las traducciones dependen
 // de la cookie, que solo existe dentro del ámbito de la request.
 export async function generateMetadata(): Promise<Metadata> {
@@ -53,8 +60,8 @@ export default async function FrontendLayout({ children }: { children: ReactNode
   const t = await getTranslations('Common');
 
   return (
-    <html lang={locale} className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <body className="flex min-h-dvh flex-col bg-white font-sans text-slate-900 antialiased">
+    <html lang={locale} className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+      <body className="flex min-h-dvh flex-col bg-white font-sans text-base leading-[1.7] text-ink-soft antialiased">
         {/* Hereda locale y messages de i18n/request.ts sin pasar props */}
         <NextIntlClientProvider>
           <a

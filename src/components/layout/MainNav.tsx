@@ -8,14 +8,9 @@ import { useState, type ReactNode } from 'react';
 import { Container } from '@/components/ui/Container';
 import { NAV_ITEMS } from '@/config/site';
 
-const focusRing =
-  'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-600';
+const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
 
-/**
- * Isla de cliente: estado activo de la ruta + menú móvil.
- * Recibe el selector de idioma como `children` para que el Header
- * siga siendo un Server Component.
- */
+/** Isla de cliente: ruta activa + menú móvil. Recibe el selector de idioma como children. */
 export function MainNav({ children }: { children?: ReactNode }) {
   const t = useTranslations('Nav');
   const pathname = usePathname();
@@ -25,10 +20,10 @@ export function MainNav({ children }: { children?: ReactNode }) {
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <div className="flex items-center gap-3 md:gap-8">
-      {/* Desktop */}
+    <div className="flex items-center gap-3">
+      {/* Desktop: .nav-link / .is-current de la base */}
       <nav aria-label={t('label')} className="hidden md:block">
-        <ul className="flex items-center gap-8">
+        <ul className="flex items-center gap-1">
           {NAV_ITEMS.map(({ href, key }) => {
             const active = isActive(href);
 
@@ -37,10 +32,10 @@ export function MainNav({ children }: { children?: ReactNode }) {
                 <Link
                   href={href}
                   aria-current={active ? 'page' : undefined}
-                  className={`text-sm font-medium transition-colors motion-reduce:transition-none ${focusRing} ${
+                  className={`inline-block rounded-[9px] px-3.5 py-2 text-[14.5px] leading-normal transition-colors motion-reduce:transition-none ${focusRing} ${
                     active
-                      ? 'text-slate-900 underline decoration-indigo-600 decoration-2 underline-offset-8'
-                      : 'text-slate-500 hover:text-slate-900'
+                      ? 'bg-accent/8 font-semibold text-ink hover:bg-accent/9 hover:text-accent'
+                      : 'font-medium text-ink-soft hover:bg-accent/9 hover:text-accent'
                   }`}
                 >
                   {t(key)}
@@ -51,42 +46,34 @@ export function MainNav({ children }: { children?: ReactNode }) {
         </ul>
       </nav>
 
-      {/* Divisor: `nav-div` del repo, antes del último control */}
-      <span aria-hidden="true" className="hidden h-5 w-px bg-slate-200 md:block" />
+      {/* .nav-div */}
+      <span aria-hidden="true" className="mx-3 hidden h-5 w-px bg-line-strong md:block" />
 
       {children}
 
-      {/* Móvil: botón hamburguesa (`nav-toggle` del repo) */}
+      {/* Móvil: .nav-toggle */}
       <button
         type="button"
         aria-expanded={open}
         aria-controls="mobile-nav"
         aria-label={t('menu')}
         onClick={() => setOpen((value) => !value)}
-        className={`grid size-9 place-items-center rounded-md border border-slate-200 text-slate-700 md:hidden ${focusRing}`}
+        className={`grid size-[42px] place-items-center rounded-[11px] border border-line-strong bg-white text-accent md:hidden ${focusRing}`}
       >
-        <svg
-          viewBox="0 0 24 24"
-          className="size-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          aria-hidden="true"
-        >
+        <svg viewBox="0 0 24 24" className="size-[18px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
           {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
         </svg>
       </button>
 
-      {/* Móvil: panel. Se posiciona respecto al <header> (sticky) */}
+      {/* Móvil: panel posicionado respecto al <header> sticky */}
       <nav
         id="mobile-nav"
         hidden={!open}
         aria-label={t('label')}
-        className="absolute inset-x-0 top-full border-b border-slate-200 bg-white md:hidden"
+        className="absolute inset-x-0 top-full border-b border-line bg-white shadow-[0_18px_40px_-22px_rgba(23,26,38,0.4)] md:hidden"
       >
-        <Container>
-          <ul className="flex flex-col py-2">
+        <Container className="pb-5 pt-3">
+          <ul className="flex flex-col gap-0.5">
             {NAV_ITEMS.map(({ href, key }) => {
               const active = isActive(href);
 
@@ -96,8 +83,8 @@ export function MainNav({ children }: { children?: ReactNode }) {
                     href={href}
                     aria-current={active ? 'page' : undefined}
                     onClick={() => setOpen(false)}
-                    className={`block py-3 text-base ${focusRing} ${
-                      active ? 'font-semibold text-slate-900' : 'text-slate-600'
+                    className={`block rounded-[9px] px-3 py-2.5 text-[15px] ${focusRing} ${
+                      active ? 'bg-accent/8 font-semibold text-ink' : 'font-medium text-ink-soft'
                     }`}
                   >
                     {t(key)}

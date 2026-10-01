@@ -7,31 +7,29 @@ import { SITE_INITIALS, SITE_NAME } from '@/config/site';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { MainNav } from './MainNav';
 
-/**
- * Server Component: la marca es estática. Solo lo que necesita estado
- * (ruta activa, menú móvil, selector de idioma) es una isla de cliente.
- * Patrón del repo: marca (logo + nombre + subtítulo) | nav | último control.
- */
+const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent';
+
+/** Server Component: marca estática. Estado (ruta activa, menú, idioma) vive en islas de cliente. */
 export async function Header() {
   const t = await getTranslations('Header');
 
   return (
-    // border-b fino = interpretación del `header-strip` del repo
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-sm">
-      <Container className="flex h-16 items-center justify-between gap-6 md:h-20">
-        <Link
-          href="/"
-          className="flex items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-600"
-        >
+    <header className="sticky top-0 z-40 border-b border-ink/6 bg-white/70 backdrop-blur-lg backdrop-saturate-180">
+      <Container className="flex items-center justify-between gap-6 py-[11px]">
+        <Link href="/" className={`inline-flex items-center gap-3 rounded-md ${focusRing}`}>
           <span
             aria-hidden="true"
-            className="grid size-9 shrink-0 place-items-center rounded-md bg-slate-900 font-mono text-sm font-semibold text-white"
+            className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-brand font-mono text-sm font-semibold text-white shadow-[0_6px_16px_-7px_rgba(79,70,229,0.7)]"
           >
             {SITE_INITIALS}
           </span>
-          <span className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold text-slate-900">{SITE_NAME}</span>
-            <span className="hidden font-mono text-xs text-slate-500 sm:block">{t('role')}</span>
+          <span className="flex flex-col leading-[1.1]">
+            <span className="font-display text-[1.15rem] font-bold tracking-[-0.025em] text-ink">
+              {SITE_NAME}
+            </span>
+            <span className="mt-[3px] hidden font-mono text-[9.5px] uppercase tracking-[0.15em] text-muted sm:block">
+              {t('role')}
+            </span>
           </span>
         </Link>
 
@@ -39,6 +37,12 @@ export async function Header() {
           <LanguageSwitcher />
         </MainNav>
       </Container>
+
+      {/* header-strip de la base: 2px, indigo → violeta → transparente */}
+      <div
+        aria-hidden="true"
+        className="h-0.5 bg-linear-to-r from-accent via-accent-2 to-transparent to-70% opacity-50"
+      />
     </header>
   );
 }

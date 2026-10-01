@@ -4,44 +4,38 @@ import { getTranslations } from 'next-intl/server';
 import { Container } from '@/components/ui/Container';
 import { CONTACT_EMAIL, NAV_ITEMS, SITE_INITIALS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
 
-const focusRing =
-  'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white';
+const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white';
+const linkClass = `text-[0.9rem] text-dark-link transition-colors hover:text-white motion-reduce:transition-none ${focusRing}`;
+const microClass = 'mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-dark-soft';
 
-const linkClass = `text-base text-slate-300 transition-colors hover:text-white motion-reduce:transition-none ${focusRing}`;
-
-/**
- * Patrón del repo: `.footer-grid` de 3 columnas
- * (marca + texto + email | Pages | Elsewhere) y una fila `.footer-bottom`.
- * Es el único elemento "audaz" del sitio: el resto se mantiene en silencio.
- *
- * Contraste: slate-400 sobre slate-900 cumple AA; slate-500 no, por eso no se usa aquí.
- */
+/** .site-footer de la base: marca + texto + email | Pages | Elsewhere, y .footer-bottom. */
 export async function Footer() {
   const t = await getTranslations('Footer');
   const tNav = await getTranslations('Nav');
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-slate-300">
-      {/* Padding enorme (py-24 → py-40) = ancla visual */}
-      <Container className="grid grid-cols-2 gap-x-8 gap-y-16 py-24 md:py-32 lg:grid-cols-[2fr_1fr_1fr] lg:gap-x-24 lg:py-40">
+    <footer className="bg-dark">
+      <Container className="grid grid-cols-2 gap-x-8 gap-y-14 py-24 md:py-28 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-x-12 lg:py-32">
         {/* Izquierda: marca + texto + email */}
-        <div className="col-span-2 max-w-md lg:col-span-1">
-          <Link href="/" className={`inline-flex items-center gap-3 rounded-md text-white ${focusRing}`}>
+        <div className="col-span-2 lg:col-span-1">
+          <Link href="/" className={`mb-[18px] inline-flex items-center gap-3 rounded-md ${focusRing}`}>
             <span
               aria-hidden="true"
-              className="grid size-9 place-items-center rounded-md bg-white font-mono text-sm font-semibold text-slate-900"
+              className="grid size-[34px] place-items-center rounded-[9px] bg-brand font-mono text-xs font-semibold text-white"
             >
               {SITE_INITIALS}
             </span>
-            <span className="text-base font-semibold">{SITE_NAME}</span>
+            <span className="font-display text-[1.08rem] font-bold tracking-[-0.025em] text-white">
+              {SITE_NAME}
+            </span>
           </Link>
 
-          <p className="mt-6 text-base leading-relaxed text-slate-400">{t('blurb')}</p>
+          <p className="mb-[22px] max-w-[34ch] text-[0.88rem] leading-[1.7] text-dark-soft">{t('blurb')}</p>
 
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className={`mt-10 inline-block font-mono text-lg text-white underline decoration-slate-600 underline-offset-8 transition-colors hover:decoration-white motion-reduce:transition-none md:text-2xl ${focusRing}`}
+            className={`border-b border-accent-2/70 pb-[3px] font-display text-[1.12rem] font-semibold tracking-[-0.01em] text-white ${focusRing}`}
           >
             {CONTACT_EMAIL}
           </a>
@@ -49,8 +43,8 @@ export async function Footer() {
 
         {/* Derecha: columnas de links */}
         <nav aria-label={t('pages')}>
-          <h2 className="font-mono text-sm text-slate-400">{t('pages')}</h2>
-          <ul className="mt-6 space-y-4">
+          <h2 className={microClass}>{t('pages')}</h2>
+          <ul className="flex flex-col items-start gap-[11px]">
             {NAV_ITEMS.map(({ href, key }) => (
               <li key={href}>
                 <Link href={href} className={linkClass}>
@@ -62,12 +56,12 @@ export async function Footer() {
         </nav>
 
         <nav aria-label={t('elsewhere')}>
-          <h2 className="font-mono text-sm text-slate-400">{t('elsewhere')}</h2>
-          <ul className="mt-6 space-y-4">
+          <h2 className={microClass}>{t('elsewhere')}</h2>
+          <ul className="flex flex-col items-start gap-[11px]">
             {SOCIAL_LINKS.map(({ href, label }) => (
               <li key={href}>
                 <a href={href} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                  {label} <span aria-hidden="true">↗</span>
+                  {label} <span aria-hidden="true" className="text-[10px] opacity-60">↗</span>
                   <span className="sr-only"> {t('external')}</span>
                 </a>
               </li>
@@ -76,9 +70,9 @@ export async function Footer() {
         </nav>
       </Container>
 
-      {/* Fila inferior: equivale a `.footer-bottom` del repo */}
-      <div className="border-t border-slate-800">
-        <Container className="flex flex-col gap-2 py-8 font-mono text-xs text-slate-400 md:flex-row md:justify-between">
+      {/* .footer-bottom */}
+      <div className="border-t border-white/7">
+        <Container className="flex flex-wrap items-center justify-between gap-x-[18px] gap-y-2.5 pb-[26px] pt-[18px] font-mono text-[0.78rem] text-dark-soft">
           <span>
             © {year} {SITE_NAME}. {t('rights')}
           </span>

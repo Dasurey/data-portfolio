@@ -31,7 +31,7 @@ export function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t('label')}
-      className="flex items-center rounded-md border border-slate-200 p-0.5 font-mono text-xs"
+      className="flex items-center rounded-full border border-line-strong bg-white p-0.5 font-mono text-xs"
     >
       {locales.map((locale) => {
         const active = locale === current;
@@ -45,8 +45,8 @@ export function LanguageSwitcher() {
             aria-label={t(locale)}
             disabled={isPending}
             onClick={() => change(locale)}
-            className={`rounded-sm px-2 py-1 transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
-              active ? 'bg-slate-900 text-white' : 'text-slate-500 hover:text-slate-900'
+            className={`rounded-full px-2.5 py-1 transition-colors motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+              active ? 'bg-brand text-white' : 'text-muted hover:text-accent'
             }`}
           >
             {locale.toUpperCase()}
