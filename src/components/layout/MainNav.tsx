@@ -6,13 +6,14 @@ import { useTranslations } from 'next-intl';
 import { useState, type ReactNode } from 'react';
 
 import { Container } from '@/components/ui/Container';
-import { NAV_ITEMS, RESUME_URL } from '@/config/site';
+import { EXTERNAL_LINK, NAV_ITEMS, RESUME_URL } from '@/config/site';
 
 const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
 
 /** Isla de cliente: ruta activa + menú móvil. Recibe el selector de idioma como children. */
 export function MainNav({ children }: { children?: ReactNode }) {
   const t = useTranslations('Nav');
+  const tf = useTranslations('Footer');
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -49,19 +50,36 @@ export function MainNav({ children }: { children?: ReactNode }) {
       {/* .nav-div */}
       <span aria-hidden="true" className="mx-3 hidden h-5 w-px bg-line-strong md:block" />
 
-      {children}
+      {/* .nav-ext */}
+      {EXTERNAL_LINK && (
+        <a
+          href={EXTERNAL_LINK.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`hidden items-center gap-1.5 rounded-[9px] px-3 py-2 text-[14.5px] font-medium leading-normal text-muted transition-colors hover:bg-accent/9 hover:text-accent motion-reduce:transition-none md:inline-flex ${focusRing}`}
+        >
+          {EXTERNAL_LINK.label}
+          <span aria-hidden="true" className="text-[11px] opacity-70">
+            ↗
+          </span>
+          <span className="sr-only"> {tf('external')}</span>
+        </a>
+      )}
 
-      {/* Desktop: .nav-resume */}
+      {/* .nav-resume */}
       {RESUME_URL && (
         <a
           href={RESUME_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden rounded-full bg-brand px-[22px] py-2.5 text-[14.5px] font-semibold leading-normal text-white shadow-[0_6px_18px_-6px_rgba(79,70,229,0.6)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgba(79,70,229,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:inline-block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className={`hidden rounded-full bg-brand px-[22px] py-2.5 text-[14.5px] font-semibold leading-normal text-white shadow-[0_6px_18px_-6px_rgba(79,70,229,0.6)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgba(79,70,229,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:inline-block ${focusRing}`}
         >
           {t('resume')}
         </a>
       )}
+
+      {/* Selector de idioma: ahora a la derecha del Résumé */}
+      {children}
 
       {/* Móvil: .nav-toggle */}
       <button
@@ -72,7 +90,15 @@ export function MainNav({ children }: { children?: ReactNode }) {
         onClick={() => setOpen((value) => !value)}
         className={`grid size-[42px] place-items-center rounded-[11px] border border-line-strong bg-white text-accent md:hidden ${focusRing}`}
       >
-        <svg viewBox="0 0 24 24" className="size-[18px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          className="size-[18px]"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          aria-hidden="true"
+        >
           {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
         </svg>
       </button>
@@ -104,8 +130,26 @@ export function MainNav({ children }: { children?: ReactNode }) {
                 </li>
               );
             })}
+
+            {EXTERNAL_LINK && (
+              <li>
+                <a
+                  href={EXTERNAL_LINK.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className={`flex items-center gap-1.5 rounded-[9px] px-3 py-2.5 text-[15px] font-medium text-muted ${focusRing}`}
+                >
+                  {EXTERNAL_LINK.label}
+                  <span aria-hidden="true" className="text-[11px] opacity-70">
+                    ↗
+                  </span>
+                  <span className="sr-only"> {tf('external')}</span>
+                </a>
+              </li>
+            )}
           </ul>
-          {/* Móvil: .nav-resume */}
+
           {RESUME_URL && (
             <a
               href={RESUME_URL}

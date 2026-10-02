@@ -9,6 +9,9 @@ import { PROFILE_PHOTO, RESUME_URL, SITE_INITIALS, SITE_NAME } from '@/config/si
 import { FeaturedProject } from '@/components/home/FeaturedProject'
 import { ProjectRow } from '@/components/home/ProjectRow'
 import { SectionHead } from '@/components/ui/SectionHead'
+import { AboutSection } from '@/components/home/AboutSection'
+import { AreasSection } from '@/components/home/AreasSection'
+import { SkillsSection } from '@/components/home/SkillsSection'
 
 export default async function HomePage() {
   const locale = await getLocale()
@@ -157,6 +160,9 @@ export default async function HomePage() {
           )}
         </Container>
       </section>
+      <AreasSection />
+      <SkillsSection />
+      <AboutSection />
     </div>
   )
 }

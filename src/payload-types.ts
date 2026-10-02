@@ -91,8 +91,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'es') | ('en' | 'es')[];
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    skills: Skill;
+  };
+  globalsSelect: {
+    skills: SkillsSelect<false> | SkillsSelect<true>;
+  };
   locale: 'en' | 'es';
   widgets: {
     collections: CollectionsWidget;
@@ -531,6 +535,49 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills".
+ */
+export interface Skill {
+  id: number;
+  /**
+   * Cada fila es una columna del Home. Se reordenan arrastrando.
+   */
+  groups?:
+    | {
+        /**
+         * Nombre de la columna (ej: Data Engineering).
+         */
+        title: string;
+        icon?: ('database' | 'chart' | 'sparkles' | 'workflow' | 'shield' | 'zap' | 'layers' | 'users') | null;
+        /**
+         * Proyectos de esta columna (casos de estudio). Las herramientas se calculan solas con el Tech Stack de cada proyecto.
+         */
+        projects?: (number | Project)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills_select".
+ */
+export interface SkillsSelect<T extends boolean = true> {
+  groups?:
+    | T
+    | {
+        title?: T;
+        icon?: T;
+        projects?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

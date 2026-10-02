@@ -40,7 +40,30 @@
     "featuredBadge": "Featured project",
     "readMore": "Read the case study",
     "seeAll": "See all projects",
-    "liveBadge": "Live demo · you can try this one"
+    "liveBadge": "Live demo · you can try this one",
+    "areasKicker": "02 — What I work on",
+    "areasTitle": "From raw sources to reliable insight",
+    "areasSub": "The problems I enjoy solving.",
+    "areas": {
+      "pipelines": { "title": "Data Pipelines", "desc": "Ingestion and transformation workflows that turn raw sources into analysis-ready tables." },
+      "warehousing": { "title": "Data Warehousing", "desc": "Dimensional models and star schemas that keep reporting fast, consistent and easy to extend." },
+      "bi": { "title": "Analytics & BI", "desc": "Dashboards and reports that answer business questions with clear, honest visuals." },
+      "quality": { "title": "Data Quality", "desc": "Validation, cleaning and monitoring so the numbers can be trusted." },
+      "automation": { "title": "Process Automation", "desc": "Scripts and scheduled workflows that replace manual, repetitive operational tasks." },
+      "ai": { "title": "Applied AI", "desc": "Integrating AI into data workflows to speed up analysis and reporting." }
+    },
+    "skillsKicker": "03 — Skills & tooling",
+    "skillsTitle": "The stack I reach for",
+    "skillsSub": "The tools I use to take data from source to decision. Tap a project to read the case study.",
+    "skillsFocus": "Case studies",
+    "skillsEmpty": "No projects linked yet.",
+    "skillsTools": "Tools",
+    "aboutKicker": "04 — About me",
+    "aboutP1": "I'm an Information Systems Engineering student at UTN FRBA and a teaching assistant for Programming Paradigms, focused on data analytics and process automation.",
+    "aboutP2": "I solve operational problems with data: cleaning messy databases, building reliable pipelines and turning the results into clear visual reports, with AI integrated where it genuinely helps.",
+    "aboutP3": "What drives me is making a process measurably better for the people who rely on it.",
+    "aboutMore": "More about me",
+    "aboutContact": "Get in touch"
   },
   "About": {
     "title": "Hi, I'm Dario Asurey",
@@ -68,7 +91,7 @@
     "skipToContent": "Skip to content"
   },
   "Header": {
-    "role": "Lorem ipsum dolor"
+    "role": "Data analytics · engineering"
   },
   "Nav": {
     "label": "Main navigation",
@@ -84,12 +107,12 @@
     "es": "Español"
   },
   "Footer": {
-    "blurb": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "pages": "Pages",
     "elsewhere": "Elsewhere",
     "external": "(opens in a new tab)",
     "rights": "All rights reserved.",
-    "built": "Lorem ipsum dolor sit amet."
+    "blurb": "Data analytics and engineering. Open to conversations about data, automation and applied AI.",
+    "built": "Built with Next.js, Payload CMS & Neon"
   },
   "Projects": {
     "title": "Projects",

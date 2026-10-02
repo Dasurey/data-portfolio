@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { Container } from '@/components/ui/Container';
-import { CONTACT_EMAIL, NAV_ITEMS, RESUME_URL, SITE_INITIALS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
+import { CONTACT_EMAIL, EXTERNAL_LINK, NAV_ITEMS, RESUME_URL, SITE_INITIALS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
 
 import { FooterNavLink } from './FooterNavLink';
 
@@ -14,6 +14,8 @@ const microClass = 'mb-4 font-mono text-[10px] uppercase tracking-[0.16em] text-
 export async function Footer() {
   const t = await getTranslations('Footer');
   const tNav = await getTranslations('Nav');
+    // "Elsewhere": las redes + el link externo del header (el lugar de "The Wife" en la base)
+  const elsewhere = [...SOCIAL_LINKS, ...(EXTERNAL_LINK ? [EXTERNAL_LINK] : [])];
 
   return (
     <footer className="bg-dark">
@@ -61,7 +63,7 @@ export async function Footer() {
           <nav aria-label={t('elsewhere')}>
             <h2 className={microClass}>{t('elsewhere')}</h2>
             <ul className="flex flex-col items-start gap-[11px]">
-              {SOCIAL_LINKS.map(({ href, label }) => (
+              {elsewhere.map(({ href, label }) => (
                 <li key={href}>
                   <a href={href} target="_blank" rel="noopener noreferrer" className={linkClass}>
                     {label} <span aria-hidden="true" className="text-[10px] opacity-60">↗</span>

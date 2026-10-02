@@ -22,3 +22,9 @@ export const SOCIAL_LINKS = [
   { href: 'https://github.com/your-handle', label: 'GitHub' },
   { href: 'https://medium.com/@your-handle', label: 'Medium' },
 ] as const
+
+// Link externo del header y del footer (el lugar de "The Wife" en la base).
+export const EXTERNAL_LINK: { label: string; href: string } | null = {
+  label: 'Blog',
+  href: 'https://example.com',
+};

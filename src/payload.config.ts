@@ -8,6 +8,7 @@ import sharp from 'sharp'
 import { Projects } from './collections/Projects'
 import { Media } from './collections/Media'
 import { Experience } from './collections/Experience'
+import { Skills } from './globals/Skills'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -34,6 +35,7 @@ export default buildConfig({
       fields: [],
     },
   ],
+  globals: [Skills],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

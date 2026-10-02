@@ -40,7 +40,30 @@
     "featuredBadge": "Proyecto destacado",
     "readMore": "Leer el caso de estudio",
     "seeAll": "Ver todos los proyectos",
-    "liveBadge": "Demo en vivo · podés probarla"
+    "liveBadge": "Demo en vivo · podés probarla",
+    "areasKicker": "02 — En qué trabajo",
+    "areasTitle": "De fuentes crudas a información confiable",
+    "areasSub": "Los problemas que disfruto resolver.",
+    "areas": {
+      "pipelines": { "title": "Pipelines de datos", "desc": "Flujos de ingesta y transformación que convierten fuentes crudas en tablas listas para analizar." },
+      "warehousing": { "title": "Data warehousing", "desc": "Modelos dimensionales y esquemas estrella que mantienen los reportes rápidos, consistentes y fáciles de extender." },
+      "bi": { "title": "Analítica y BI", "desc": "Dashboards y reportes que responden preguntas de negocio con visuales claros y honestos." },
+      "quality": { "title": "Calidad de datos", "desc": "Validación, limpieza y monitoreo para poder confiar en los números." },
+      "automation": { "title": "Automatización de procesos", "desc": "Scripts y flujos programados que reemplazan tareas operativas manuales y repetitivas." },
+      "ai": { "title": "IA aplicada", "desc": "Integración de IA en los flujos de datos para acelerar el análisis y los reportes." }
+    },
+    "skillsKicker": "03 — Skills y herramientas",
+    "skillsTitle": "El stack al que recurro",
+    "skillsSub": "Las herramientas que uso para llevar los datos del origen a la decisión. Tocá un proyecto para leer el caso de estudio.",
+    "skillsFocus": "Casos de estudio",
+    "skillsEmpty": "Todavía no hay proyectos asociados.",
+    "skillsTools": "Herramientas",
+    "aboutKicker": "04 — Sobre mí",
+    "aboutP1": "Soy estudiante de Ingeniería en Sistemas de Información en la UTN FRBA y ayudante de cátedra de Paradigmas de Programación, con foco en analítica de datos y automatización de procesos.",
+    "aboutP2": "Resuelvo problemas operativos con datos: limpio bases desordenadas, armo pipelines confiables y convierto los resultados en reportes visuales claros, integrando IA donde realmente aporta.",
+    "aboutP3": "Lo que me mueve es mejorar un proceso de forma medible para las personas que dependen de él.",
+    "aboutMore": "Más sobre mí",
+    "aboutContact": "Contactame"
   },
   "About": {
     "title": "Hola, soy Dario Asurey",
@@ -68,7 +91,7 @@
     "skipToContent": "Saltar al contenido"
   },
   "Header": {
-    "role": "Lorem ipsum dolor"
+    "role": "Analítica · ingeniería de datos"
   },
   "Nav": {
     "label": "Navegación principal",
@@ -84,12 +107,12 @@
     "es": "Español"
   },
   "Footer": {
-    "blurb": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "pages": "Páginas",
     "elsewhere": "En otros sitios",
     "external": "(se abre en una pestaña nueva)",
     "rights": "Todos los derechos reservados.",
-    "built": "Lorem ipsum dolor sit amet."
+    "blurb": "Analítica e ingeniería de datos. Abierto a conversar sobre datos, automatización e IA aplicada.",
+    "built": "Hecho con Next.js, Payload CMS y Neon"
   },
   "Projects": {
     "title": "Proyectos",
