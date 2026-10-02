@@ -4,6 +4,8 @@ import { getTranslations } from 'next-intl/server';
 
 import type { Project } from '@/payload-types';
 
+import { DemoBrowser } from './DemoBrowser';
+
 const pill = 'rounded-full border border-accent/14 bg-accent/8 px-3 py-[5px] text-[0.74rem] font-semibold text-accent-ink';
 
 function hostOf(url?: string | null) {
@@ -31,8 +33,11 @@ export async function FeaturedProject({ project }: { project: Project }) {
   return (
     <div className="grid items-center gap-7 rounded-[20px] border border-indigo-500/[0.32] bg-linear-to-b from-indigo-500/7 to-accent-2/2 p-[26px] sm:p-9 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:gap-11">
       <div>
-        <span className="mb-4 inline-flex items-center rounded-full bg-brand px-3.5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white">
-          {t('featuredBadge')}
+        <span className="mb-4 inline-flex items-center gap-[9px] rounded-full bg-brand px-3.5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-white">
+          {project.liveUrl && (
+            <span aria-hidden="true" className="border-y-4 border-l-[7px] border-y-transparent border-l-white" />
+          )}
+          {project.liveUrl ? t('liveBadge') : t('featuredBadge')}
         </span>
         <h3 className="mb-3.5 font-display text-[1.85rem] font-bold leading-[1.15] tracking-[-0.025em] text-ink">
           {project.title}
@@ -70,32 +75,47 @@ export async function FeaturedProject({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* .browser */}
-      <Link
-        href={detailHref}
-        aria-label={project.title}
-        className="block overflow-hidden rounded-[14px] border border-slate-900/10 bg-white shadow-[0_22px_50px_-24px_rgba(15,23,42,0.55)]"
-      >
-        <div className="flex items-center gap-2 border-b border-[#e4e6f0] bg-[#f2f3f9] px-3.5 py-2.5">
-          <span aria-hidden="true" className="flex gap-2">
-            <span className="size-2.5 rounded-full bg-line" />
-            <span className="size-2.5 rounded-full bg-line" />
-            <span className="size-2.5 rounded-full bg-line" />
-          </span>
-          <span className="flex-1 truncate text-center font-mono text-[11px] text-muted">{host ?? project.slug}</span>
-        </div>
-        {image?.url && (
-          <div className="relative h-[340px]">
-            <Image
-              src={image.url}
-              alt={image.alt}
-              fill
-              sizes="(min-width: 1024px) 560px, 100vw"
-              className="object-cover object-top"
-            />
+      {project.liveUrl && image?.url ? (
+        <DemoBrowser
+          url={project.liveUrl}
+          host={host ?? project.liveUrl}
+          title={project.title}
+          imageSrc={image.url}
+          imageAlt={image.alt}
+          labels={{
+            run: tp('runHere'),
+            note: tp('runNote'),
+            openNewTab: tp('openNewTab'),
+            close: tp('close'),
+          }}
+        />
+      ) : (
+        <Link
+          href={detailHref}
+          aria-label={project.title}
+          className="block overflow-hidden rounded-[14px] border border-slate-900/10 bg-white shadow-[0_22px_50px_-24px_rgba(15,23,42,0.55)]"
+        >
+          <div className="flex items-center gap-2 border-b border-[#e4e6f0] bg-[#f2f3f9] px-3.5 py-2.5">
+            <span aria-hidden="true" className="flex gap-2">
+              <span className="size-2.5 rounded-full bg-line" />
+              <span className="size-2.5 rounded-full bg-line" />
+              <span className="size-2.5 rounded-full bg-line" />
+            </span>
+            <span className="flex-1 truncate text-center font-mono text-[11px] text-muted">{host ?? project.slug}</span>
           </div>
-        )}
-      </Link>
+          {image?.url && (
+            <div className="relative h-[340px]">
+              <Image
+                src={image.url}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className="object-cover object-top"
+              />
+            </div>
+          )}
+        </Link>
+      )}
     </div>
   );
 }

@@ -39,7 +39,8 @@
     "workSub": "Una selección de proyectos de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
     "featuredBadge": "Proyecto destacado",
     "readMore": "Leer el caso de estudio",
-    "seeAll": "Ver todos los proyectos"
+    "seeAll": "Ver todos los proyectos",
+    "liveBadge": "Demo en vivo · podés probarla"
   },
   "About": {
     "title": "Hola, soy Dario Asurey",
@@ -97,6 +98,10 @@
     "liveDemo": "Abrir la demo en vivo",
     "repository": "Ver el código",
     "viewProject": "Ver proyecto",
-    "empty": "Todavía no hay proyectos publicados."
+    "empty": "Todavía no hay proyectos publicados.",
+    "runHere": "Ejecutarla acá",
+    "runNote": "abre la app real a pantalla completa",
+    "openNewTab": "Abrir en una pestaña nueva",
+    "close": "Cerrar"
   }
 }

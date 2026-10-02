@@ -39,7 +39,8 @@
     "workSub": "A selection of data engineering and analytics projects, from pipelines and warehouses to dashboards.",
     "featuredBadge": "Featured project",
     "readMore": "Read the case study",
-    "seeAll": "See all projects"
+    "seeAll": "See all projects",
+    "liveBadge": "Live demo · you can try this one"
   },
   "About": {
     "title": "Hi, I'm Dario Asurey",
@@ -97,6 +98,10 @@
     "liveDemo": "Open the live demo",
     "repository": "View the code",
     "viewProject": "View project",
-    "empty": "No projects published yet."
+    "empty": "No projects published yet.",
+    "runHere": "Run it here",
+    "runNote": "opens the real app full-screen",
+    "openNewTab": "Open in a new tab",
+    "close": "Close"
   }
 }
