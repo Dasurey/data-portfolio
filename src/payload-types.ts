@@ -133,6 +133,24 @@ export interface Project {
    */
   slug: string;
   description: string;
+  /**
+   * Etiqueta chica sobre el título (ej: Data Engineering).
+   */
+  category?: string | null;
+  /**
+   * Se muestra como tarjeta grande en el Home. Marcá uno solo.
+   */
+  featured?: boolean | null;
+  /**
+   * Datos clave a la derecha de la fila (se muestran hasta 3).
+   */
+  metrics?:
+    | {
+        value?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   content?: {
     root: {
       type: string;
@@ -355,6 +373,15 @@ export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   description?: T;
+  category?: T;
+  featured?: T;
+  metrics?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
   content?: T;
   techStack?:
     | T

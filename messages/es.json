@@ -34,7 +34,12 @@
       "finalEyebrow": "entregado al negocio",
       "finalTitle": "Dashboards listos para decidir",
       "caption": "La forma de los proyectos de abajo: datos crudos de entrada, información confiable de salida."
-    }
+    },
+    "workTitle": "De datos crudos a decisiones",
+    "workSub": "Una selección de proyectos de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
+    "featuredBadge": "Proyecto destacado",
+    "readMore": "Leer el caso de estudio",
+    "seeAll": "Ver todos los proyectos"
   },
   "About": {
     "title": "Hola, soy Dario Asurey",
@@ -84,5 +89,14 @@
     "external": "(se abre en una pestaña nueva)",
     "rights": "Todos los derechos reservados.",
     "built": "Lorem ipsum dolor sit amet."
+  },
+  "Projects": {
+    "title": "Proyectos",
+    "sub": "Trabajo de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
+    "back": "Todos los proyectos",
+    "liveDemo": "Abrir la demo en vivo",
+    "repository": "Ver el código",
+    "viewProject": "Ver proyecto",
+    "empty": "Todavía no hay proyectos publicados."
   }
 }

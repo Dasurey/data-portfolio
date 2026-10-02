@@ -6,6 +6,9 @@ import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { HeroDiagram } from '@/components/home/HeroDiagram'
 import { PROFILE_PHOTO, RESUME_URL, SITE_INITIALS, SITE_NAME } from '@/config/site'
+import { FeaturedProject } from '@/components/home/FeaturedProject'
+import { ProjectRow } from '@/components/home/ProjectRow'
+import { SectionHead } from '@/components/ui/SectionHead'
 
 export default async function HomePage() {
   const locale = await getLocale()
@@ -22,10 +25,13 @@ export default async function HomePage() {
   // Traemos datos
   const { docs: projects } = await payload.find({
     collection: 'projects',
-    limit: 3,
+    limit: 6,
     sort: '-createdAt',
     locale: locale as any,
   })
+
+  const featured = projects.find((project) => project.featured)
+  const rows = projects.filter((project) => project.id !== featured?.id).slice(0, 3)
 
   return (
     <div className="flex flex-col">
@@ -115,56 +121,38 @@ export default async function HomePage() {
       </section>
 
       {/* LA SECCIÓN DE PROYECTOS SE MUESTRA SIEMPRE, CAMBIA EL CONTENIDO */}
-      <section className="border-t border-slate-100 bg-slate-50/50 py-24 md:py-32">
-        <Container>
-          <div className="mb-16 flex items-baseline justify-between border-b border-slate-200 pb-8">
-            <h2 className="font-mono text-xs uppercase tracking-widest text-slate-500">
-              {t('selectedWorks')} / {projects.length.toString().padStart(2, '0')}
-            </h2>
-            <Link href="/projects" className="font-mono text-xs uppercase tracking-widest text-indigo-600">
-              {t('viewAll')} →
-            </Link>
-          </div>
+      {/* 01 — Selected work: sección #work de la base */}
+      <section>
+        <Container className="pb-5 pt-14 sm:pt-[78px]">
+          <SectionHead
+            className="mb-11"
+            kicker={`01 — ${t('selectedWorks')}`}
+            title={t('workTitle')}
+            sub={t('workSub')}
+          />
 
-          {/* Si hay proyectos, mostramos la grid */}
-          {projects.length > 0 ? (
-            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-              {projects.map((project) => (
-                <Link key={project.id} href={`/projects/${project.slug}`} className="group flex flex-col">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-slate-200 shadow-sm transition-shadow group-hover:shadow-md">
-                    {typeof project.image !== 'string' && project.image?.url && (
-                      <Image
-                        src={project.image.url}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    )}
-                  </div>
-                  <div className="mt-6">
-                    <h3 className="text-xl font-medium text-slate-900 group-hover:text-indigo-600">
-                      {project.title}
-                    </h3>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {project.techStack?.map((tech: any) => (
-                        <span key={tech.id} className="border border-slate-200 bg-white px-2 py-0.5 font-mono text-[10px] text-slate-500 uppercase">
-                          {tech.name}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              ))}
+          {featured && (
+            <div className="mb-16">
+              <FeaturedProject project={featured} />
             </div>
-          ) : (
-            /* SI NO HAY PROYECTOS, MOSTRAMOS UN ESTADO VACÍO ELEGANTE */
-            <div className="flex min-h-[300px] items-center justify-center rounded-sm border-2 border-dashed border-slate-200">
-              <div className="text-center">
-                <p className="font-mono text-sm text-slate-400">{t('noProjects')}</p>
-                <Link href="/admin" className="mt-4 inline-block text-xs uppercase tracking-widest text-indigo-600 underline decoration-indigo-200 underline-offset-4 hover:decoration-indigo-600">
-                  + Create first project
-                </Link>
-              </div>
+          )}
+
+          {rows.map((project, index) => (
+            <ProjectRow key={project.id} project={project} index={index} />
+          ))}
+
+          {projects.length === 0 && (
+            <p className="py-16 text-center font-mono text-sm text-muted">{t('noProjects')}</p>
+          )}
+
+          {projects.length > 0 && (
+            <div className="py-12 text-center">
+              <Link
+                href="/projects"
+                className="inline-block rounded-full border-[1.5px] border-line-strong bg-white px-6 py-[11px] text-[0.92rem] font-semibold leading-normal text-accent transition-colors hover:border-accent motion-reduce:transition-none"
+              >
+                {t('seeAll')}
+              </Link>
             </div>
           )}
         </Container>

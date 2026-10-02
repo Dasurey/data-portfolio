@@ -34,7 +34,12 @@
       "finalEyebrow": "delivered to the business",
       "finalTitle": "Decision-ready dashboards",
       "caption": "The shape of the projects below: raw data in, trusted insight out."
-    }
+    },
+    "workTitle": "From raw data to decisions",
+    "workSub": "A selection of data engineering and analytics projects, from pipelines and warehouses to dashboards.",
+    "featuredBadge": "Featured project",
+    "readMore": "Read the case study",
+    "seeAll": "See all projects"
   },
   "About": {
     "title": "Hi, I'm Dario Asurey",
@@ -84,5 +89,14 @@
     "external": "(opens in a new tab)",
     "rights": "All rights reserved.",
     "built": "Lorem ipsum dolor sit amet."
+  },
+  "Projects": {
+    "title": "Projects",
+    "sub": "Data engineering and analytics work, from pipelines and warehouses to dashboards.",
+    "back": "All projects",
+    "liveDemo": "Open the live demo",
+    "repository": "View the code",
+    "viewProject": "View project",
+    "empty": "No projects published yet."
   }
 }

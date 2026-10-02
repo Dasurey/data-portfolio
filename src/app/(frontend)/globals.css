@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* next/font inyecta estas variables en <html> (ver layout.tsx) */
 @theme inline {

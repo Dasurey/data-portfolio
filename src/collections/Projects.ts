@@ -32,6 +32,28 @@ export const Projects: CollectionConfig = {
       localized: true,
     },
     {
+      name: 'category',
+      type: 'text',
+      localized: true,
+      admin: { description: 'Etiqueta chica sobre el título (ej: Data Engineering).' },
+    },
+    {
+      name: 'featured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: { description: 'Se muestra como tarjeta grande en el Home. Marcá uno solo.' },
+    },
+    {
+      name: 'metrics',
+      type: 'array',
+      labels: { singular: 'Metric', plural: 'Metrics' },
+      admin: { description: 'Datos clave a la derecha de la fila (se muestran hasta 3).' },
+      fields: [
+        { name: 'value', type: 'text', localized: true },
+        { name: 'label', type: 'text', localized: true },
+      ],
+    },
+    {
       name: 'content',
       type: 'richText', // Para el detalle del proyecto
       localized: true,
