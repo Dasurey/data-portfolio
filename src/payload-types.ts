@@ -93,9 +93,11 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'es') | ('en' | 'es')[];
   globals: {
     skills: Skill;
+    teo: Teo;
   };
   globalsSelect: {
     skills: SkillsSelect<false> | SkillsSelect<true>;
+    teo: TeoSelect<false> | TeoSelect<true>;
   };
   locale: 'en' | 'es';
   widgets: {
@@ -564,6 +566,30 @@ export interface Skill {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teo".
+ */
+export interface Teo {
+  id: number;
+  /**
+   * Etiqueta chica sobre el título (ej: Off the clock).
+   */
+  kicker?: string | null;
+  title?: string | null;
+  lead?: string | null;
+  /**
+   * Foto grande de la portada.
+   */
+  heroPhoto?: (number | null) | Media;
+  galleryTitle?: string | null;
+  /**
+   * Galería: elegí varias fotos a la vez y ordenalas arrastrando.
+   */
+  photos?: (number | Media)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "skills_select".
  */
 export interface SkillsSelect<T extends boolean = true> {
@@ -575,6 +601,21 @@ export interface SkillsSelect<T extends boolean = true> {
         projects?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "teo_select".
+ */
+export interface TeoSelect<T extends boolean = true> {
+  kicker?: T;
+  title?: T;
+  lead?: T;
+  heroPhoto?: T;
+  galleryTitle?: T;
+  photos?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

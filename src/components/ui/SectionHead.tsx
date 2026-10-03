@@ -12,7 +12,7 @@ type Props = {
 export function SectionHead({ kicker, title, sub, className = '', plain = false }: Props) {
   return (
     <div
-      className={`flex flex-col items-start gap-[11px] ${plain ? '' : 'border-b border-line pb-[22px]'} ${className}`}
+      className={`flex flex-col items-start gap-[11px] ${plain ? '' : 'border-b border-line pb-[22px]'} ${className}`} data-reveal
     >
       <div>
         <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">{kicker}</p>

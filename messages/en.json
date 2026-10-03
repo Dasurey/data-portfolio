@@ -99,7 +99,8 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "resume": "Résumé"
+    "resume": "Résumé",
+    "teo": "Teo"
   },
   "LanguageSwitcher": {
     "label": "Language",
@@ -126,5 +127,17 @@
     "runNote": "opens the real app full-screen",
     "openNewTab": "Open in a new tab",
     "close": "Close"
+  },
+  "Teo": {
+    "kicker": "Off the clock",
+    "title": "Teo",
+    "lead": "A page for what happens away from the screen.",
+    "galleryTitle": "Photos",
+    "count": "{count, plural, one {# photo} other {# photos}} · tap to enlarge",
+    "back": "Back to the work",
+    "empty": "No photos yet.",
+    "close": "Close",
+    "prev": "Previous photo",
+    "next": "Next photo"
   }
 }

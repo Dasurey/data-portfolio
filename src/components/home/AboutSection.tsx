@@ -15,7 +15,7 @@ export async function AboutSection() {
   return (
     <section className="border-y border-line bg-tint">
       <Container className="grid items-start gap-9 py-14 sm:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-14 lg:py-[74px]">
-        <div className="flex flex-col">
+        <div className="flex flex-col" data-reveal>
           {PROFILE_PHOTO ? (
             <Image
               src={PROFILE_PHOTO}
@@ -51,9 +51,9 @@ export async function AboutSection() {
           </div>
         </div>
 
-        <div>
+        <div data-reveal>
           <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">{t('aboutKicker')}</p>
-          <p className="mb-[22px] text-pretty font-display text-[1.42rem] leading-[1.5] tracking-[-0.02em] text-ink">
+          <p className="mb-4 max-w-[66ch] text-pretty font-display text-[1.02rem] leading-[1.5] tracking-[-0.02em] text-ink-soft">
             {t('aboutP1')}
           </p>
           <p className="mb-4 max-w-[66ch] text-pretty text-[1.02rem] text-ink-soft">{t('aboutP2')}</p>

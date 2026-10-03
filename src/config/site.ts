@@ -15,6 +15,7 @@ export const NAV_ITEMS = [
   { href: '/', key: 'home' },
   { href: '/about', key: 'about' },
   { href: '/projects', key: 'projects' },
+  { href: '/teo', key: 'teo' },
 ] as const
 
 export const SOCIAL_LINKS = [

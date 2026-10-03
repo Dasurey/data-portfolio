@@ -135,13 +135,15 @@ export default async function HomePage() {
           />
 
           {featured && (
-            <div className="mb-16">
+            <div className="mb-16" data-reveal>
               <FeaturedProject project={featured} />
             </div>
           )}
 
           {rows.map((project, index) => (
-            <ProjectRow key={project.id} project={project} index={index} />
+            <div key={project.id} data-reveal>
+              <ProjectRow project={project} index={index} />
+            </div>
           ))}
 
           {projects.length === 0 && (

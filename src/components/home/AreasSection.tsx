@@ -13,7 +13,7 @@ export async function AreasSection() {
       <Container className="py-14 sm:py-[70px]">
         <SectionHead plain className="mb-[38px]" kicker={t('areasKicker')} title={t('areasTitle')} sub={t('areasSub')} />
 
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-[#e4e6f0] bg-[#e4e6f0] sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-[#e4e6f0] bg-[#e4e6f0] sm:grid-cols-2 lg:grid-cols-3" data-reveal>
           {AREAS.map(({ key, icon: Icon }) => (
             <div key={key} className="bg-white px-[26px] py-[30px]">
               <span className="mb-4 grid size-11 place-items-center rounded-xl bg-accent/10 text-accent">

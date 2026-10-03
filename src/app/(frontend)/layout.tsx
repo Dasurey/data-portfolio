@@ -7,6 +7,7 @@ import type { ReactNode } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { SITE_NAME } from '@/config/site';
+import { RevealObserver } from '@/components/layout/RevealObserver'
 
 import './globals.css';
 
@@ -61,6 +62,9 @@ export default async function FrontendLayout({ children }: { children: ReactNode
 
   return (
     <html lang={locale} className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js-reveal')" }} />
+      </head>
       <body className="flex min-h-dvh flex-col bg-white font-sans text-base leading-[1.7] text-ink-soft antialiased">
         {/* Hereda locale y messages de i18n/request.ts sin pasar props */}
         <NextIntlClientProvider>
@@ -71,6 +75,7 @@ export default async function FrontendLayout({ children }: { children: ReactNode
             {t('skipToContent')}
           </a>
 
+          <RevealObserver />
           <Header />
 
           <main id="main" className="flex-1">

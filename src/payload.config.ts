@@ -9,6 +9,7 @@ import { Projects } from './collections/Projects'
 import { Media } from './collections/Media'
 import { Experience } from './collections/Experience'
 import { Skills } from './globals/Skills'
+import { Teo } from './globals/Teo'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +36,7 @@ export default buildConfig({
       fields: [],
     },
   ],
-  globals: [Skills],
+  globals: [Skills, Teo],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

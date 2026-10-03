@@ -65,7 +65,7 @@ export async function HeroDiagram() {
   ];
 
   return (
-    <div className="rounded-[20px] bg-dark px-[22px] pb-[26px] pt-[22px] shadow-[0_30px_70px_-28px_rgba(23,26,38,0.5)]">
+    <div className="rounded-[20px] bg-dark px-[22px] pb-[26px] pt-[22px] shadow-[0_30px_70px_-28px_rgba(23,26,38,0.5)]" data-reveal>
       <div className="mb-5 flex items-center justify-between gap-3">
         <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-dark-soft">{t('label')}</span>
         <span className="inline-flex items-center gap-1.5 font-mono text-[10.5px] uppercase tracking-[0.1em] text-live">

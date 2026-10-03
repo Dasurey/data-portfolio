@@ -23,7 +23,7 @@ export function MainNav({ children }: { children?: ReactNode }) {
   return (
     <div className="flex items-center gap-3">
       {/* Desktop: .nav-link / .is-current de la base */}
-      <nav aria-label={t('label')} className="hidden md:block">
+      <nav aria-label={t('label')} className="hidden lg:block">
         <ul className="flex items-center gap-1">
           {NAV_ITEMS.map(({ href, key }) => {
             const active = isActive(href);
@@ -48,7 +48,7 @@ export function MainNav({ children }: { children?: ReactNode }) {
       </nav>
 
       {/* .nav-div */}
-      <span aria-hidden="true" className="mx-3 hidden h-5 w-px bg-line-strong md:block" />
+      <span aria-hidden="true" className="mx-3 hidden h-5 w-px bg-line-strong lg:block" />
 
       {/* .nav-ext */}
       {EXTERNAL_LINK && (
@@ -56,7 +56,7 @@ export function MainNav({ children }: { children?: ReactNode }) {
           href={EXTERNAL_LINK.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`hidden items-center gap-1.5 rounded-[9px] px-3 py-2 text-[14.5px] font-medium leading-normal text-muted transition-colors hover:bg-accent/9 hover:text-accent motion-reduce:transition-none md:inline-flex ${focusRing}`}
+          className={`hidden items-center gap-1.5 rounded-[9px] px-3 py-2 text-[14.5px] font-medium leading-normal text-muted transition-colors hover:bg-accent/9 hover:text-accent motion-reduce:transition-none lg:inline-flex ${focusRing}`}
         >
           {EXTERNAL_LINK.label}
           <span aria-hidden="true" className="text-[11px] opacity-70">
@@ -72,7 +72,7 @@ export function MainNav({ children }: { children?: ReactNode }) {
           href={RESUME_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className={`hidden rounded-full bg-brand px-[22px] py-2.5 text-[14.5px] font-semibold leading-normal text-white shadow-[0_6px_18px_-6px_rgba(79,70,229,0.6)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgba(79,70,229,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:inline-block ${focusRing}`}
+          className={`hidden rounded-full bg-brand px-[22px] py-2.5 text-[14.5px] font-semibold leading-normal text-white shadow-[0_6px_18px_-6px_rgba(79,70,229,0.6)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgba(79,70,229,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:inline-block ${focusRing}`}
         >
           {t('resume')}
         </a>
@@ -88,7 +88,7 @@ export function MainNav({ children }: { children?: ReactNode }) {
         aria-controls="mobile-nav"
         aria-label={t('menu')}
         onClick={() => setOpen((value) => !value)}
-        className={`grid size-[42px] place-items-center rounded-[11px] border border-line-strong bg-white text-accent md:hidden ${focusRing}`}
+        className={`grid size-[42px] place-items-center rounded-[11px] border border-line-strong bg-white text-accent lg:hidden ${focusRing}`}
       >
         <svg
           viewBox="0 0 24 24"
@@ -108,7 +108,7 @@ export function MainNav({ children }: { children?: ReactNode }) {
         id="mobile-nav"
         hidden={!open}
         aria-label={t('label')}
-        className="absolute inset-x-0 top-full border-b border-line bg-white shadow-[0_18px_40px_-22px_rgba(23,26,38,0.4)] md:hidden"
+        className="absolute inset-x-0 top-full border-b border-line bg-white shadow-[0_18px_40px_-22px_rgba(23,26,38,0.4)] lg:hidden"
       >
         <Container className="pb-5 pt-3">
           <ul className="flex flex-col gap-0.5">

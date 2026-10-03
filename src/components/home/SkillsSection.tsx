@@ -47,7 +47,7 @@ export async function SkillsSection() {
       <Container className="py-14 sm:py-[74px]">
         <SectionHead plain className="mb-[38px]" kicker={t('skillsKicker')} title={t('skillsTitle')} sub={t('skillsSub')} />
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 lg:grid-cols-3" data-reveal>
           {groups.map((group) => {
             const Icon = SKILL_ICONS[group.icon ?? 'database'] ?? SKILL_ICONS.database;
             const projects = (group.projects ?? []).filter((p): p is Project => typeof p === 'object');

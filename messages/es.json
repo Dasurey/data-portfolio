@@ -99,7 +99,8 @@
     "home": "Inicio",
     "about": "Sobre mí",
     "projects": "Proyectos",
-    "resume": "Currículum"
+    "resume": "Currículum",
+    "teo": "Teo"
   },
   "LanguageSwitcher": {
     "label": "Idioma",
@@ -126,5 +127,17 @@
     "runNote": "abre la app real a pantalla completa",
     "openNewTab": "Abrir en una pestaña nueva",
     "close": "Cerrar"
+  },
+  "Teo": {
+    "kicker": "Fuera de horario",
+    "title": "Teo",
+    "lead": "Una página para lo que pasa lejos de la pantalla.",
+    "galleryTitle": "Fotos",
+    "count": "{count, plural, one {# foto} other {# fotos}} · tocá para ampliar",
+    "back": "Volver al trabajo",
+    "empty": "Todavía no hay fotos.",
+    "close": "Cerrar",
+    "prev": "Foto anterior",
+    "next": "Foto siguiente"
   }
 }
