@@ -33,6 +33,8 @@ const nextConfig: NextConfig = {
           protocol: url.protocol.replace(':', '') as 'http' | 'https',
         }
       }),
+      // Archivos de Vercel Blob (solo se usa si activás URLs directas, ver "Opcional")
+      { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }
     ],
   },
   webpack: (webpackConfig) => {

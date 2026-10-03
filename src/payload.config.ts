@@ -67,7 +67,10 @@ export default buildConfig({
     vercelBlobStorage({
       // Sin token (por ejemplo, un clon del repo) cae al disco local.
       enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
-      collections: { media: true, documents: true },
+      collections: {
+        media: { disablePayloadAccessControl: true },
+        documents: { disablePayloadAccessControl: true },
+      },
       token: process.env.BLOB_READ_WRITE_TOKEN,
       clientUploads: true,
     }),
