@@ -87,9 +87,6 @@
     "title": "Portfolio",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
   },
-  "Common": {
-    "skipToContent": "Skip to content"
-  },
   "Header": {
     "role": "Data analytics · engineering"
   },

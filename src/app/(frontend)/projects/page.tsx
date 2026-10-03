@@ -12,17 +12,20 @@ import { RESUME_URL } from '@/config/site';
 import type { Locale } from '@/i18n/config';
 import type { Project } from '@/payload-types';
 
-const objects = (list: (number | Project)[] | null | undefined) =>
-  (list ?? []).filter((item): item is Project => typeof item === 'object');
+// Una relación llega como id o como documento (según `depth`): lo normalizamos a id.
+type Ref = number | { id: number };
+const idsOf = (list: Ref[] | null | undefined) =>
+  (list ?? []).map((ref) => (typeof ref === 'object' ? ref.id : ref));
 
 export default async function ProjectsPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations('Projects');
   const payload = await getPayload({ config: configPromise });
 
-  const [{ docs: projects }, page] = await Promise.all([
+  const [{ docs: projects }, { docs: filterDocs }, page] = await Promise.all([
     payload.find({ collection: 'projects', sort: '-createdAt', limit: 100, depth: 1, locale }),
-    payload.findGlobal({ slug: 'projects-page', depth: 1, locale }),
+    payload.find({ collection: 'project-filters', sort: 'createdAt', limit: 100, depth: 0, locale }),
+    payload.findGlobal({ slug: 'projects-page', depth: 0, locale }),
   ]);
 
   // La tarjeta grande es el proyecto marcado "Featured": no se repite como fila.
@@ -39,12 +42,19 @@ export default async function ProjectsPage() {
       return [{ project, index: counter - 1 }];
     });
 
-  const sections: ExplorerSection[] = (page.sections ?? []).map((section) => ({
-    id: section.id ?? section.title,
-    title: section.title,
-    description: section.description ?? null,
-    items: take(objects(section.projects)),
-  }));
+  const pageSections = page.sections ?? [];
+
+  // Una sección muestra los proyectos que tengan CUALQUIERA de sus filtros.
+  const sections: ExplorerSection[] = pageSections.map((section) => {
+    const wanted = new Set(idsOf(section.filters));
+
+    return {
+      id: section.id ?? section.title,
+      title: section.title,
+      description: section.description ?? null,
+      items: take(projects.filter((project) => idsOf(project.filters).some((id) => wanted.has(id)))),
+    };
+  });
 
   // Los que no están en ninguna sección van al final, para que nunca queden ocultos.
   const rest = take(projects);
@@ -57,13 +67,21 @@ export default async function ProjectsPage() {
     ...sections.flatMap((section) => section.items.map((item) => item.project.id)),
   ]);
 
-  const filters: ExplorerFilter[] = (page.filters ?? []).map((filter) => ({
-    id: filter.id ?? filter.label,
-    label: filter.label,
-    ids: objects(filter.projects)
-      .map((project) => project.id)
-      .filter((id) => displayed.has(id)),
-  }));
+  // Botones: primero en el orden en que aparecen en las secciones, después el resto por fecha de creación.
+  // Un filtro sin proyectos visibles no se muestra.
+  const labels = new Map<number, string>(filterDocs.map((filter): [number, string] => [filter.id, filter.label]));
+  const order = [
+    ...new Set([...pageSections.flatMap((section) => idsOf(section.filters)), ...filterDocs.map((filter) => filter.id)]),
+  ];
+
+  const filters: ExplorerFilter[] = order.flatMap((filterId) => {
+    const label = labels.get(filterId);
+    const ids = projects
+      .filter((project) => displayed.has(project.id) && idsOf(project.filters).includes(filterId))
+      .map((project) => project.id);
+
+    return label && ids.length > 0 ? [{ id: String(filterId), label, ids }] : [];
+  });
 
   return (
     <ProjectsExplorer

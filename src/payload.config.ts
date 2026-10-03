@@ -11,6 +11,7 @@ import { Experience } from './collections/Experience'
 import { Skills } from './globals/Skills'
 import { Teo } from './globals/Teo'
 import { ProjectsPage } from './globals/ProjectsPage'
+import { ProjectFilters } from './collections/ProjectFilters'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,6 +28,7 @@ export default buildConfig({
     Projects,
     Media,
     Experience,
+    ProjectFilters,
     {
       slug: 'users',
       auth: true,

@@ -58,7 +58,6 @@ export const viewport: Viewport = {
 
 export default async function FrontendLayout({ children }: { children: ReactNode }) {
   const locale = await getLocale();
-  const t = await getTranslations('Common');
 
   return (
     <html lang={locale} className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
@@ -68,12 +67,6 @@ export default async function FrontendLayout({ children }: { children: ReactNode
       <body className="flex min-h-dvh flex-col bg-white font-sans text-base leading-[1.7] text-ink-soft antialiased">
         {/* Hereda locale y messages de i18n/request.ts sin pasar props */}
         <NextIntlClientProvider>
-          <a
-            href="#main"
-            className="fixed left-4 top-4 z-50 -translate-y-20 rounded-md bg-slate-900 px-4 py-2 text-sm text-white transition-transform focus:translate-y-0 motion-reduce:transition-none"
-          >
-            {t('skipToContent')}
-          </a>
 
           <RevealObserver />
           <Header />

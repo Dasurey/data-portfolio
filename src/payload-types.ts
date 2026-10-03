@@ -70,6 +70,7 @@ export interface Config {
     projects: Project;
     media: Media;
     experience: Experience;
+    'project-filters': ProjectFilter;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -81,6 +82,7 @@ export interface Config {
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
+    'project-filters': ProjectFiltersSelect<false> | ProjectFiltersSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -146,6 +148,10 @@ export interface Project {
    */
   category?: string | null;
   /**
+   * Filtros a los que pertenece este proyecto (puede tener varios).
+   */
+  filters?: (number | ProjectFilter)[] | null;
+  /**
    * Se muestra como tarjeta grande en el Home. Marcá uno solo.
    */
   featured?: boolean | null;
@@ -183,6 +189,19 @@ export interface Project {
   repositoryUrl?: string | null;
   liveUrl?: string | null;
   image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-filters".
+ */
+export interface ProjectFilter {
+  id: number;
+  /**
+   * Texto del botón (ej: AI, Real-Time NLP, Credit ML).
+   */
+  label: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -328,6 +347,10 @@ export interface PayloadLockedDocument {
         value: number | Experience;
       } | null)
     | ({
+        relationTo: 'project-filters';
+        value: number | ProjectFilter;
+      } | null)
+    | ({
         relationTo: 'users';
         value: number | User;
       } | null);
@@ -382,6 +405,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   slug?: T;
   description?: T;
   category?: T;
+  filters?: T;
   featured?: T;
   metrics?:
     | T
@@ -474,6 +498,15 @@ export interface ExperienceSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-filters_select".
+ */
+export interface ProjectFiltersSelect<T extends boolean = true> {
+  label?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -597,26 +630,16 @@ export interface Teo {
 export interface ProjectsPage {
   id: number;
   /**
-   * Botones de filtro (el botón "All work" se agrega solo). Cada filtro lista los proyectos que lo cumplen; un proyecto puede estar en varios.
-   */
-  filters?:
-    | {
-        label: string;
-        projects?: (number | Project)[] | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Bloques de la página, en el orden en que se muestran: arrastrá las filas para reordenarlas. Un proyecto aparece una sola vez (en la primera sección que lo incluya). Los que no estén en ninguna van al final, en "More work".
+   * Bloques de la página, en el orden en que se muestran: arrastrá las filas para reordenarlas. Cada sección muestra los proyectos que tengan alguno de sus filtros. Un proyecto aparece una sola vez (en la primera sección que lo incluya). Los que no estén en ninguna van al final, en "More work".
    */
   sections?:
     | {
         title: string;
         description?: string | null;
         /**
-         * Proyectos de esta sección, en el orden en que se muestran (arrastrá para ordenar).
+         * Filtros de esta sección: muestra los proyectos que tengan cualquiera de ellos. Sin filtros, la sección queda vacía y no se muestra.
          */
-        projects?: (number | Project)[] | null;
+        filters?: (number | ProjectFilter)[] | null;
         id?: string | null;
       }[]
     | null;
@@ -660,19 +683,12 @@ export interface TeoSelect<T extends boolean = true> {
  * via the `definition` "projects-page_select".
  */
 export interface ProjectsPageSelect<T extends boolean = true> {
-  filters?:
-    | T
-    | {
-        label?: T;
-        projects?: T;
-        id?: T;
-      };
   sections?:
     | T
     | {
         title?: T;
         description?: T;
-        projects?: T;
+        filters?: T;
         id?: T;
       };
   updatedAt?: T;

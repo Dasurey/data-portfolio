@@ -1,41 +1,31 @@
 import type { GlobalConfig } from 'payload'
 
-/** Página /projects: filtros (botones de arriba) y secciones (bloques con sus proyectos). */
+/** Página /projects: las secciones (bloques) y qué filtros muestra cada una. */
 export const ProjectsPage: GlobalConfig = {
   slug: 'projects-page',
   label: 'Projects page',
   access: { read: () => true },
   fields: [
     {
-      name: 'filters',
-      type: 'array',
-      labels: { singular: 'Filter', plural: 'Filters' },
-      admin: {
-        description:
-          'Botones de filtro (el botón "All work" se agrega solo). Cada filtro lista los proyectos que lo cumplen; un proyecto puede estar en varios.',
-      },
-      fields: [
-        { name: 'label', type: 'text', required: true, localized: true },
-        { name: 'projects', type: 'relationship', relationTo: 'projects', hasMany: true },
-      ],
-    },
-    {
       name: 'sections',
       type: 'array',
       labels: { singular: 'Section', plural: 'Sections' },
       admin: {
         description:
-          'Bloques de la página, en el orden en que se muestran: arrastrá las filas para reordenarlas. Un proyecto aparece una sola vez (en la primera sección que lo incluya). Los que no estén en ninguna van al final, en "More work".',
+          'Bloques de la página, en el orden en que se muestran: arrastrá las filas para reordenarlas. Cada sección muestra los proyectos que tengan alguno de sus filtros. Un proyecto aparece una sola vez (en la primera sección que lo incluya). Los que no estén en ninguna van al final, en "More work".',
       },
       fields: [
         { name: 'title', type: 'text', required: true, localized: true },
         { name: 'description', type: 'textarea', localized: true },
         {
-          name: 'projects',
+          name: 'filters',
           type: 'relationship',
-          relationTo: 'projects',
+          relationTo: 'project-filters',
           hasMany: true,
-          admin: { description: 'Proyectos de esta sección, en el orden en que se muestran (arrastrá para ordenar).' },
+          admin: {
+            description:
+              'Filtros de esta sección: muestra los proyectos que tengan cualquiera de ellos. Sin filtros, la sección queda vacía y no se muestra.',
+          },
         },
       ],
     },

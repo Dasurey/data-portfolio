@@ -38,6 +38,15 @@ export const Projects: CollectionConfig = {
       admin: { description: 'Etiqueta chica sobre el título (ej: Data Engineering).' },
     },
     {
+      name: 'filters',
+      type: 'relationship',
+      relationTo: 'project-filters',
+      hasMany: true,
+      admin: {
+        description: 'Filtros a los que pertenece este proyecto (puede tener varios).',
+      },
+    },
+    {
       name: 'featured',
       type: 'checkbox',
       defaultValue: false,
