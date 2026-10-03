@@ -4,6 +4,9 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { Documents } from './collections/Documents'
+import { SiteSettings } from './globals/SiteSettings'
 
 import { Projects } from './collections/Projects'
 import { Media } from './collections/Media'
@@ -29,6 +32,7 @@ export default buildConfig({
     Media,
     Experience,
     ProjectFilters,
+    Documents,
     {
       slug: 'users',
       auth: true,
@@ -39,7 +43,7 @@ export default buildConfig({
       fields: [],
     },
   ],
-    globals: [Skills, Teo, ProjectsPage],
+  globals: [Skills, Teo, ProjectsPage, SiteSettings],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -59,4 +63,13 @@ export default buildConfig({
     defaultLocale: 'en',
     fallback: true,
   },
+  plugins: [
+    vercelBlobStorage({
+      // Sin token (por ejemplo, un clon del repo) cae al disco local.
+      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      collections: { media: true, documents: true },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      clientUploads: true,
+    }),
+  ],
 })

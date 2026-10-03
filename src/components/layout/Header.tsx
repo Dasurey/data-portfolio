@@ -6,12 +6,14 @@ import { SITE_INITIALS, SITE_NAME } from '@/config/site';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { MainNav } from './MainNav';
+import { getSiteSettings } from '@/lib/site-settings';
 
 const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent';
 
 /** Server Component: marca estática. Estado (ruta activa, menú, idioma) vive en islas de cliente. */
 export async function Header() {
   const t = await getTranslations('Header');
+  const { resumeUrl } = await getSiteSettings();
 
   return (
     <header className="sticky top-0 z-40 border-b border-ink/6 bg-white/70 backdrop-blur-lg backdrop-saturate-180">
@@ -33,7 +35,7 @@ export async function Header() {
           </span>
         </Link>
 
-        <MainNav>
+        <MainNav resumeUrl={resumeUrl}>
           <LanguageSwitcher />
         </MainNav>
       </Container>

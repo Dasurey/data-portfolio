@@ -6,8 +6,9 @@ import configPromise from '@payload-config';
 
 import { ExperienceItem } from '@/components/layout/ExperienceItem';
 import { Container } from '@/components/ui/Container';
-import { PROFILE_PHOTO, RESUME_URL, SITE_INITIALS, SITE_NAME } from '@/config/site';
+import { SITE_INITIALS, SITE_NAME } from '@/config/site';
 import type { Locale } from '@/i18n/config';
+import { getSiteSettings } from '@/lib/site-settings';
 
 const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
 const photoClass = 'aspect-square w-full rounded-[18px] shadow-[0_22px_50px_-24px_rgba(23,26,38,0.45)]';
@@ -17,6 +18,7 @@ export default async function AboutPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations('About');
   const payload = await getPayload({ config: configPromise });
+  const { photo, resumeUrl } = await getSiteSettings();
 
   const { docs: experience } = await payload.find({
     collection: 'experience',
@@ -43,9 +45,9 @@ export default async function AboutPage() {
           {/* .intro-grid: foto + botones | bio */}
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-9 lg:grid-cols-[330px_minmax(0,1fr)] lg:gap-14" data-reveal>
             <div>
-              {PROFILE_PHOTO ? (
+              {photo ? (
                 <Image
-                  src={PROFILE_PHOTO}
+                  src={photo.src}
                   alt={SITE_NAME}
                   width={660}
                   height={660}
@@ -70,9 +72,9 @@ export default async function AboutPage() {
                   {t('selectedWork')}
                 </Link>
 
-                {RESUME_URL && (
+                {resumeUrl && (
                   <a
-                    href={RESUME_URL}
+                    href={resumeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`rounded-full border-[1.5px] border-line-strong bg-white px-5 py-[11px] text-center text-[0.9rem] font-semibold leading-normal text-accent transition-colors hover:border-accent motion-reduce:transition-none ${focusRing}`}

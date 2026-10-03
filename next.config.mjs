@@ -8,6 +8,11 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const nextConfig = {
   // Payload requiere Next >= 16.2.6 y no garantiza compatibilidad con
   // `cacheComponents`: no activarlo.
+
+  // Los archivos subidos desde el admin viven en Vercel Blob.
+  images: {
+    remotePatterns: [{ protocol: 'https', hostname: '*.public.blob.vercel-storage.com' }],
+  },
 };
 
 // Payload es ESM puro, por eso el archivo es .mjs.

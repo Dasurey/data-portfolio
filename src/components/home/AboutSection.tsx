@@ -4,21 +4,23 @@ import { getTranslations } from 'next-intl/server';
 
 import { Container } from '@/components/ui/Container';
 import { SocialIcon } from '@/components/ui/SocialIcon';
-import { CONTACT_EMAIL, PROFILE_PHOTO, SITE_INITIALS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
+import { CONTACT_EMAIL, SITE_INITIALS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
+import { getSiteSettings } from '@/lib/site-settings';
 
 const photoClass = 'aspect-square w-full rounded-[18px] shadow-[0_22px_50px_-24px_rgba(23,26,38,0.45)]';
 
 /** Sección 04: .about-grid de la base (foto + redes | kicker, cita, párrafos y botones). */
 export async function AboutSection() {
   const t = await getTranslations('Home');
+  const { photo } = await getSiteSettings();
 
   return (
     <section className="border-y border-line bg-tint">
       <Container className="grid items-start gap-9 py-14 sm:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-14 lg:py-[74px]">
         <div className="flex flex-col" data-reveal>
-          {PROFILE_PHOTO ? (
+          {photo ? (
             <Image
-              src={PROFILE_PHOTO}
+              src={photo.src}
               alt={SITE_NAME}
               width={600}
               height={600}

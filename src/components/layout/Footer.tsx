@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { Container } from '@/components/ui/Container';
-import { CONTACT_EMAIL, EXTERNAL_LINK, NAV_ITEMS, RESUME_URL, SITE_INITIALS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
+import { CONTACT_EMAIL, EXTERNAL_LINK, NAV_ITEMS, SITE_INITIALS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
+import { getSiteSettings } from '@/lib/site-settings';
 
 import { FooterNavLink } from './FooterNavLink';
 
@@ -16,6 +17,7 @@ export async function Footer() {
   const tNav = await getTranslations('Nav');
     // "Elsewhere": las redes + el link externo del header (el lugar de "The Wife" en la base)
   const elsewhere = [...SOCIAL_LINKS, ...(EXTERNAL_LINK ? [EXTERNAL_LINK] : [])];
+  const { resumeUrl } = await getSiteSettings();
 
   return (
     <footer className="bg-dark">
@@ -50,9 +52,9 @@ export async function Footer() {
                   <FooterNavLink href={href}>{tNav(key)}</FooterNavLink>
                 </li>
               ))}
-              {RESUME_URL && (
+              {resumeUrl && (
                 <li>
-                  <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
                     {tNav('resume')} <span aria-hidden="true" className="text-[10px] opacity-60">↗</span>
                   </a>
                 </li>

@@ -6,12 +6,12 @@ import { useTranslations } from 'next-intl';
 import { useState, type ReactNode } from 'react';
 
 import { Container } from '@/components/ui/Container';
-import { EXTERNAL_LINK, NAV_ITEMS, RESUME_URL } from '@/config/site';
+import { EXTERNAL_LINK, NAV_ITEMS } from '@/config/site';
 
 const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
 
 /** Isla de cliente: ruta activa + menú móvil. Recibe el selector de idioma como children. */
-export function MainNav({ children }: { children?: ReactNode }) {
+export function MainNav({ children, resumeUrl }: { children?: ReactNode; resumeUrl: string | null }) {
   const t = useTranslations('Nav');
   const tf = useTranslations('Footer');
   const pathname = usePathname();
@@ -67,9 +67,9 @@ export function MainNav({ children }: { children?: ReactNode }) {
       )}
 
       {/* .nav-resume */}
-      {RESUME_URL && (
+      {resumeUrl && (
         <a
-          href={RESUME_URL}
+          href={resumeUrl}
           target="_blank"
           rel="noopener noreferrer"
           className={`hidden rounded-full bg-brand px-[22px] py-2.5 text-[14.5px] font-semibold leading-normal text-white shadow-[0_6px_18px_-6px_rgba(79,70,229,0.6)] transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-8px_rgba(79,70,229,0.7)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:inline-block ${focusRing}`}
@@ -150,9 +150,9 @@ export function MainNav({ children }: { children?: ReactNode }) {
             )}
           </ul>
 
-          {RESUME_URL && (
+          {resumeUrl && (
             <a
-              href={RESUME_URL}
+              href={resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}

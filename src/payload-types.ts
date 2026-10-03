@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     experience: Experience;
     'project-filters': ProjectFilter;
+    documents: Document;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -83,6 +84,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     'project-filters': ProjectFiltersSelect<false> | ProjectFiltersSelect<true>;
+    documents: DocumentsSelect<false> | DocumentsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -97,11 +99,13 @@ export interface Config {
     skills: Skill;
     teo: Teo;
     'projects-page': ProjectsPage;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     skills: SkillsSelect<false> | SkillsSelect<true>;
     teo: TeoSelect<false> | TeoSelect<true>;
     'projects-page': ProjectsPageSelect<false> | ProjectsPageSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: 'en' | 'es';
   widgets: {
@@ -212,6 +216,7 @@ export interface ProjectFilter {
 export interface Media {
   id: number;
   alt: string;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -286,6 +291,29 @@ export interface Experience {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  /**
+   * Nombre para encontrarlo en el admin (ej: CV octubre 2026).
+   */
+  title: string;
+  _objectKey?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -349,6 +377,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'project-filters';
         value: number | ProjectFilter;
+      } | null)
+    | ({
+        relationTo: 'documents';
+        value: number | Document;
       } | null)
     | ({
         relationTo: 'users';
@@ -433,6 +465,7 @@ export interface ProjectsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -509,6 +542,25 @@ export interface ProjectFiltersSelect<T extends boolean = true> {
   label?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents_select".
+ */
+export interface DocumentsSelect<T extends boolean = true> {
+  title?: T;
+  _objectKey?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -648,6 +700,23 @@ export interface ProjectsPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  /**
+   * Tu foto (Home y About). Cuadrada o casi cuadrada se ve mejor.
+   */
+  profilePhoto?: (number | null) | Media;
+  /**
+   * PDF del currículum. Podés elegir uno por idioma (cambiá el Locale arriba); si falta el del español se usa el de inglés.
+   */
+  resume?: (number | null) | Document;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "skills_select".
  */
 export interface SkillsSelect<T extends boolean = true> {
@@ -691,6 +760,17 @@ export interface ProjectsPageSelect<T extends boolean = true> {
         filters?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  profilePhoto?: T;
+  resume?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -5,13 +5,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
 import { HeroDiagram } from '@/components/home/HeroDiagram'
-import { PROFILE_PHOTO, RESUME_URL, SITE_INITIALS, SITE_NAME } from '@/config/site'
+import { SITE_INITIALS, SITE_NAME } from '@/config/site'
 import { FeaturedProject } from '@/components/home/FeaturedProject'
 import { ProjectRow } from '@/components/home/ProjectRow'
 import { SectionHead } from '@/components/ui/SectionHead'
 import { AboutSection } from '@/components/home/AboutSection'
 import { AreasSection } from '@/components/home/AreasSection'
 import { SkillsSection } from '@/components/home/SkillsSection'
+import { getSiteSettings } from '@/lib/site-settings';
 
 export default async function HomePage() {
   const locale = await getLocale()
@@ -24,6 +25,7 @@ export default async function HomePage() {
     { num: t('stat3Num'), label: t('stat3Label') },
   ]
   const payload = await getPayload({ config: configPromise })
+  const { photo, resumeUrl } = await getSiteSettings()
 
   // Traemos datos
   const { docs: projects } = await payload.find({
@@ -42,9 +44,9 @@ export default async function HomePage() {
       <section className="border-b border-line bg-grid">
         <Container className="grid items-center gap-11 pb-[82px] pt-[52px] lg:grid-cols-[1.02fr_1fr] lg:gap-16 lg:pt-[76px]">
           <div>
-            {PROFILE_PHOTO ? (
+            {photo ? (
               <Image
-                src={PROFILE_PHOTO}
+                src={photo.src}
                 alt={SITE_NAME}
                 width={192}
                 height={192}
@@ -106,9 +108,9 @@ export default async function HomePage() {
               >
                 {t('viewPortfolio')}
               </Link>
-              {RESUME_URL && (
+              {resumeUrl && (
                 <a
-                  href={RESUME_URL}
+                  href={resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full border-[1.5px] border-line-strong bg-white px-[26px] py-3 text-[0.95rem] font-semibold leading-normal text-accent transition-colors hover:border-accent motion-reduce:transition-none"
