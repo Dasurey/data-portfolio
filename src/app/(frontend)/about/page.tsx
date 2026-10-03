@@ -30,18 +30,18 @@ export default async function AboutPage() {
       <section className="border-b border-line bg-grid">
         <Container className="pb-[52px] pt-11 sm:pb-16 sm:pt-[58px]">
           {/* .intro-head */}
-          <div className="mb-11 max-w-[70ch]">
+          <div className="mb-11 max-w-[70ch]" data-reveal>
             <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">{t('kicker')}</p>
             <h1 className="mb-[18px] font-display text-[2.6rem] font-bold leading-[1.04] tracking-[-0.035em] text-ink sm:text-[3.4rem]">
               {t('title')}
             </h1>
-            <p className="max-w-[46ch] text-pretty font-display text-[1.32rem] leading-[1.45] tracking-[-0.018em] text-ink">
+            <p className="max-w-[46ch] text-pretty font-medium text-[1.32rem] leading-[1.45] tracking-[-0.018em] text-ink">
               {t('lead')}
             </p>
           </div>
 
           {/* .intro-grid: foto + botones | bio */}
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-9 lg:grid-cols-[330px_minmax(0,1fr)] lg:gap-14">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-9 lg:grid-cols-[330px_minmax(0,1fr)] lg:gap-14" data-reveal>
             <div>
               {PROFILE_PHOTO ? (
                 <Image
@@ -95,7 +95,7 @@ export default async function AboutPage() {
       {/* Experiencia: .pad-exp + .sechead--exp + .timeline */}
       <section>
         <Container className="pb-16 pt-[52px] sm:pb-20 sm:pt-[66px]">
-          <div className="mb-2.5 flex flex-col items-start gap-[11px] border-b border-line pb-[22px]">
+          <div className="mb-2.5 flex flex-col items-start gap-[11px] border-b border-line pb-[22px]" data-reveal>
             <div>
               <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
                 {t('experienceKicker')}
@@ -109,13 +109,14 @@ export default async function AboutPage() {
 
           <div className="max-w-[920px]">
             {experience.map((item, index) => (
-              <ExperienceItem
-                key={item.id}
-                item={item}
-                isLast={index === experience.length - 1}
-                nowLabel={t('current')}
-                currentLabel={t('badgeCurrent')}
-              />
+              <div key={item.id} data-reveal>
+                <ExperienceItem
+                  item={item}
+                  isLast={index === experience.length - 1}
+                  nowLabel={t('current')}
+                  currentLabel={t('badgeCurrent')}
+                />
+              </div>
             ))}
           </div>
         </Container>

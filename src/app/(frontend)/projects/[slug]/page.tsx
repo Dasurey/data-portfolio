@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <>
       <section className="border-b border-line bg-grid">
-        <Container className="pb-12 pt-11 sm:pb-14 sm:pt-[58px]">
+        <Container className="pb-12 pt-11 sm:pb-14 sm:pt-[58px]" data-reveal>
           <Link href="/projects" className="mb-6 inline-block font-mono text-xs text-muted transition-colors hover:text-accent">
             ← {t('back')}
           </Link>
@@ -84,7 +84,7 @@ export default async function ProjectPage({ params }: Props) {
       </section>
 
       <section>
-        <Container className="py-14 sm:py-[70px]">
+        <Container className="py-14 sm:py-[70px]" data-reveal>
           {image?.url && (
             <Image
               src={image.url}

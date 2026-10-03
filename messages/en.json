@@ -116,7 +116,13 @@
     "built": "Built with Next.js, Payload CMS & Neon"
   },
   "Projects": {
-    "title": "Projects",
+    "kicker": "Projects",
+    "title": "Data projects, from source to decision",
+    "all": "All work",
+    "moreWork": "More work",
+    "noMatches": "No projects match this filter.",
+    "cta": "Want the full detail, with dates and stack?",
+    "viewResume": "View my résumé",
     "sub": "Data engineering and analytics work, from pipelines and warehouses to dashboards.",
     "back": "All projects",
     "liveDemo": "Open the live demo",

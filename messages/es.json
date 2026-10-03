@@ -116,7 +116,13 @@
     "built": "Hecho con Next.js, Payload CMS y Neon"
   },
   "Projects": {
-    "title": "Proyectos",
+    "kicker": "Proyectos",
+    "title": "Proyectos de datos, del origen a la decisión",
+    "all": "Todo el trabajo",
+    "moreWork": "Más trabajo",
+    "noMatches": "Ningún proyecto coincide con este filtro.",
+    "cta": "¿Querés el detalle completo, con fechas y stack?",
+    "viewResume": "Ver mi currículum",
     "sub": "Trabajo de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
     "back": "Todos los proyectos",
     "liveDemo": "Abrir la demo en vivo",

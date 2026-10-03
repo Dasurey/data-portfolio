@@ -28,7 +28,7 @@ export default async function TeoPage() {
         <Container
           className={`grid items-center gap-8 pb-[70px] pt-12 lg:pt-[66px] ${hero?.url ? 'lg:grid-cols-2 lg:gap-[60px]' : ''}`}
         >
-          <div>
+          <div data-reveal>
             <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
               {teo.kicker || t('kicker')}
             </p>
@@ -47,7 +47,7 @@ export default async function TeoPage() {
           </div>
 
           {hero?.url && (
-            <div>
+            <div data-reveal>
               <Image
                 src={hero.url}
                 alt={hero.alt}
@@ -65,7 +65,7 @@ export default async function TeoPage() {
       {/* Galería */}
       <section>
         <Container className="pb-20 pt-14 sm:pt-[70px]">
-          <div className="mb-7 flex flex-col gap-2.5 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
+          <div className="mb-7 flex flex-col gap-2.5 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10" data-reveal>
             <h2 className="font-display text-[2rem] font-bold tracking-[-0.03em] text-ink">
               {teo.galleryTitle || t('galleryTitle')}
             </h2>

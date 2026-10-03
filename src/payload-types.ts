@@ -94,10 +94,12 @@ export interface Config {
   globals: {
     skills: Skill;
     teo: Teo;
+    'projects-page': ProjectsPage;
   };
   globalsSelect: {
     skills: SkillsSelect<false> | SkillsSelect<true>;
     teo: TeoSelect<false> | TeoSelect<true>;
+    'projects-page': ProjectsPageSelect<false> | ProjectsPageSelect<true>;
   };
   locale: 'en' | 'es';
   widgets: {
@@ -590,6 +592,39 @@ export interface Teo {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects-page".
+ */
+export interface ProjectsPage {
+  id: number;
+  /**
+   * Botones de filtro (el botón "All work" se agrega solo). Cada filtro lista los proyectos que lo cumplen; un proyecto puede estar en varios.
+   */
+  filters?:
+    | {
+        label: string;
+        projects?: (number | Project)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Bloques de la página, en el orden en que se muestran: arrastrá las filas para reordenarlas. Un proyecto aparece una sola vez (en la primera sección que lo incluya). Los que no estén en ninguna van al final, en "More work".
+   */
+  sections?:
+    | {
+        title: string;
+        description?: string | null;
+        /**
+         * Proyectos de esta sección, en el orden en que se muestran (arrastrá para ordenar).
+         */
+        projects?: (number | Project)[] | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "skills_select".
  */
 export interface SkillsSelect<T extends boolean = true> {
@@ -616,6 +651,30 @@ export interface TeoSelect<T extends boolean = true> {
   heroPhoto?: T;
   galleryTitle?: T;
   photos?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects-page_select".
+ */
+export interface ProjectsPageSelect<T extends boolean = true> {
+  filters?:
+    | T
+    | {
+        label?: T;
+        projects?: T;
+        id?: T;
+      };
+  sections?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        projects?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

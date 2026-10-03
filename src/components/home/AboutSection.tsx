@@ -53,7 +53,7 @@ export async function AboutSection() {
 
         <div data-reveal>
           <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">{t('aboutKicker')}</p>
-          <p className="mb-4 max-w-[66ch] text-pretty font-display text-[1.02rem] leading-[1.5] tracking-[-0.02em] text-ink-soft">
+          <p className="mb-4 max-w-[66ch] text-pretty font-display text-[1.02rem] font-medium leading-[1.5] tracking-[-0.02em] text-ink">
             {t('aboutP1')}
           </p>
           <p className="mb-4 max-w-[66ch] text-pretty text-[1.02rem] text-ink-soft">{t('aboutP2')}</p>

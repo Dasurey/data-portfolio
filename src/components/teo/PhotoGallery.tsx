@@ -30,7 +30,7 @@ export function PhotoGallery({ photos, labels }: Props) {
 
   return (
     <>
-      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3" data-reveal>
         {photos.map((photo, i) => (
           <button
             key={photo.id}

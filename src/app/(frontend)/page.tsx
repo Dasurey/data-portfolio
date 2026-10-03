@@ -140,11 +140,15 @@ export default async function HomePage() {
             </div>
           )}
 
-          {rows.map((project, index) => (
-            <div key={project.id} data-reveal>
-              <ProjectRow project={project} index={index} />
+          {rows.length > 0 && (
+            <div className="border-t border-line">
+              {rows.map((project, index) => (
+                <div key={project.id} data-reveal>
+                  <ProjectRow project={project} index={index} />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
 
           {projects.length === 0 && (
             <p className="py-16 text-center font-mono text-sm text-muted">{t('noProjects')}</p>
