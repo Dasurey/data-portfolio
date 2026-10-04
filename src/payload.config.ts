@@ -65,14 +65,11 @@ export default buildConfig({
   },
   plugins: [
     vercelBlobStorage({
-      // Sin token (por ejemplo, un clon del repo) cae al disco local.
       enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
-      collections: {
-        media: { disablePayloadAccessControl: true },
-        documents: { disablePayloadAccessControl: true },
-      },
+      // Sin `disablePayloadAccessControl`: Payload lee los archivos desde Blob y el admin muestra las miniaturas.
+      collections: { media: true, documents: true },
       token: process.env.BLOB_READ_WRITE_TOKEN,
-      clientUploads: true,
+      clientUploads: false,
     }),
   ],
 })
