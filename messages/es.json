@@ -129,7 +129,10 @@
     "runHere": "Ejecutarla acá",
     "runNote": "abre la app real a pantalla completa",
     "openNewTab": "Abrir en una pestaña nueva",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "breadcrumb": "Ruta de navegación"
   },
   "Teo": {
     "kicker": "Fuera de horario",

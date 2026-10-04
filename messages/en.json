@@ -129,7 +129,10 @@
     "runHere": "Run it here",
     "runNote": "opens the real app full-screen",
     "openNewTab": "Open in a new tab",
-    "close": "Close"
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied",
+    "breadcrumb": "Breadcrumb"
   },
   "Teo": {
     "kicker": "Off the clock",

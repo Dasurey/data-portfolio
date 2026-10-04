@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { projectBlocks } from '../blocks/project'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -94,6 +95,16 @@ export const Projects: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'blocks',
+      type: 'blocks',
+      labels: { singular: 'Block', plural: 'Blocks' },
+      admin: {
+        description:
+          'Cuerpo de la página del proyecto, en el orden en que se muestra (arrastrá para reordenar). La portada y la línea con los filtros son fijas.',
+      },
+      blocks: projectBlocks,
     },
   ],
 }
