@@ -169,6 +169,18 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
+  techStack?:
+    | {
+        name?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  repositoryUrl?: string | null;
+  liveUrl?: string | null;
+  image: number | Media;
+  /**
+   * Escribí con "/" para insertar títulos, listas, notas, imágenes, videos, código y botones. Seleccioná texto para darle formato, link, color o resaltado.
+   */
   content?: {
     root: {
       type: string;
@@ -184,119 +196,6 @@ export interface Project {
     };
     [k: string]: unknown;
   } | null;
-  techStack?:
-    | {
-        name?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  repositoryUrl?: string | null;
-  liveUrl?: string | null;
-  image: number | Media;
-  /**
-   * Cuerpo de la página del proyecto, en el orden en que se muestra (arrastrá para reordenar). La portada y la línea con los filtros son fijas.
-   */
-  blocks?:
-    | (
-        | {
-            size?: ('normal' | 'lede') | null;
-            body: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'prjText';
-          }
-        | {
-            text: string;
-            level?: ('h2' | 'h3') | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'prjHeading';
-          }
-        | {
-            text: string;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'prjCallout';
-          }
-        | {
-            items?:
-              | {
-                  value: string;
-                  label?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'prjMetrics';
-          }
-        | {
-            image: number | Media;
-            caption?: string | null;
-            frame?: ('none' | 'browser') | null;
-            /**
-             * Opcional: si lo completás, la imagen lleva a esta dirección (https://... o /projects/...).
-             */
-            linkUrl?: string | null;
-            newTab?: boolean | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'prjImage';
-          }
-        | {
-            /**
-             * Link de YouTube o Vimeo, o de un archivo de video (.mp4).
-             */
-            url: string;
-            caption?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'prjVideo';
-          }
-        | {
-            /**
-             * Opcional: nombre del archivo o "Terminal".
-             */
-            title?: string | null;
-            language?: ('bash' | 'javascript' | 'typescript' | 'python' | 'sql' | 'json' | 'yaml' | 'text') | null;
-            code: string;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'prjCode';
-          }
-        | {
-            items?:
-              | {
-                  label: string;
-                  /**
-                   * Dirección completa (https://...) o interna (/projects).
-                   */
-                  url: string;
-                  style?: ('primary' | 'ghost') | null;
-                  newTab?: boolean | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'prjButtons';
-          }
-      )[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -542,7 +441,6 @@ export interface ProjectsSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
-  content?: T;
   techStack?:
     | T
     | {
@@ -552,89 +450,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   repositoryUrl?: T;
   liveUrl?: T;
   image?: T;
-  blocks?:
-    | T
-    | {
-        prjText?:
-          | T
-          | {
-              size?: T;
-              body?: T;
-              id?: T;
-              blockName?: T;
-            };
-        prjHeading?:
-          | T
-          | {
-              text?: T;
-              level?: T;
-              id?: T;
-              blockName?: T;
-            };
-        prjCallout?:
-          | T
-          | {
-              text?: T;
-              id?: T;
-              blockName?: T;
-            };
-        prjMetrics?:
-          | T
-          | {
-              items?:
-                | T
-                | {
-                    value?: T;
-                    label?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-        prjImage?:
-          | T
-          | {
-              image?: T;
-              caption?: T;
-              frame?: T;
-              linkUrl?: T;
-              newTab?: T;
-              id?: T;
-              blockName?: T;
-            };
-        prjVideo?:
-          | T
-          | {
-              url?: T;
-              caption?: T;
-              id?: T;
-              blockName?: T;
-            };
-        prjCode?:
-          | T
-          | {
-              title?: T;
-              language?: T;
-              code?: T;
-              id?: T;
-              blockName?: T;
-            };
-        prjButtons?:
-          | T
-          | {
-              items?:
-                | T
-                | {
-                    label?: T;
-                    url?: T;
-                    style?: T;
-                    newTab?: T;
-                    id?: T;
-                  };
-              id?: T;
-              blockName?: T;
-            };
-      };
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -953,6 +769,134 @@ export interface CollectionsWidget {
     [k: string]: unknown;
   };
   width: 'full';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrjLedeBlock".
+ */
+export interface PrjLedeBlock {
+  text: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'prjLede';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrjCalloutBlock".
+ */
+export interface PrjCalloutBlock {
+  text: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'prjCallout';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrjMetricsBlock".
+ */
+export interface PrjMetricsBlock {
+  items?:
+    | {
+        value: string;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'prjMetrics';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrjImageBlock".
+ */
+export interface PrjImageBlock {
+  image: number | Media;
+  caption?: string | null;
+  /**
+   * Opcional: si lo completás, la imagen lleva a esta dirección (https://... o /projects/...).
+   */
+  linkUrl?: string | null;
+  newTab?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'prjImage';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrjVideoBlock".
+ */
+export interface PrjVideoBlock {
+  /**
+   * Link de YouTube o Vimeo, o de un archivo de video (.mp4).
+   */
+  url: string;
+  caption?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'prjVideo';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrjCodeBlock".
+ */
+export interface PrjCodeBlock {
+  /**
+   * Opcional: nombre del archivo o "Terminal".
+   */
+  title?: string | null;
+  language?:
+    | (
+        | 'bash'
+        | 'powershell'
+        | 'javascript'
+        | 'typescript'
+        | 'jsx'
+        | 'tsx'
+        | 'python'
+        | 'r'
+        | 'sql'
+        | 'json'
+        | 'yaml'
+        | 'html'
+        | 'css'
+        | 'markdown'
+        | 'dockerfile'
+        | 'diff'
+        | 'java'
+        | 'csharp'
+        | 'cpp'
+        | 'go'
+        | 'rust'
+        | 'php'
+        | 'text'
+      )
+    | null;
+  code: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'prjCode';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrjButtonsBlock".
+ */
+export interface PrjButtonsBlock {
+  items?:
+    | {
+        label: string;
+        /**
+         * Dirección completa (https://...) o interna (/projects).
+         */
+        url: string;
+        style?: ('primary' | 'ghost') | null;
+        newTab?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'prjButtons';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

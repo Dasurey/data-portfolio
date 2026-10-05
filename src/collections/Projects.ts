@@ -72,11 +72,6 @@ export const Projects: CollectionConfig = {
       ],
     },
     {
-      name: 'content',
-      type: 'richText', // Para el detalle del proyecto
-      localized: true,
-    },
-    {
       name: 'techStack',
       type: 'array',
       label: 'Technical Stack',
