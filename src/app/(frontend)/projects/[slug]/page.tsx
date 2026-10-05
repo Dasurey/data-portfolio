@@ -3,8 +3,9 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
 
+import { LivePreviewListener } from '@/components/LivePreviewListener';
 import { PageBanner } from '@/components/projects/PageBanner';
-import { ProjectBlocks } from '@/components/projects/ProjectBlocks';
+import { ProjectContent } from '@/components/projects/ProjectContent';
 import { Container } from '@/components/ui/Container';
 import type { Locale } from '@/i18n/config';
 
@@ -17,11 +18,12 @@ export default async function ProjectPage({ params }: Props) {
   const t = await getTranslations('Projects');
   const payload = await getPayload({ config: configPromise });
 
+  // depth 2: las imágenes que van dentro de los bloques del editor llegan completas.
   const { docs } = await payload.find({
     collection: 'projects',
     where: { slug: { equals: slug } },
     limit: 1,
-    depth: 1,
+    depth: 2,
     locale,
   });
 
@@ -32,10 +34,11 @@ export default async function ProjectPage({ params }: Props) {
   const kicker = (project.filters ?? [])
     .flatMap((filter) => (typeof filter === 'object' && filter.label ? [filter.label] : []))
     .join(' · ');
-  const blocks = project.blocks ?? [];
 
   return (
     <>
+      <LivePreviewListener />
+
       <PageBanner
         title={project.title}
         ariaLabel={t('breadcrumb')}
@@ -48,16 +51,13 @@ export default async function ProjectPage({ params }: Props) {
 
       <section>
         <Container className="pb-[60px] pt-[46px]">
-          <div className="mx-auto max-w-[825px]">
-            {kicker && (
-              <p className="mb-[18px] text-[16px] font-bold uppercase tracking-[0.16em] text-ink-soft">{kicker}</p>
-            )}
+          <div className="mx-auto max-w-[825px]" data-reveal>
+            {kicker && <p className="mb-[18px] text-[16px] font-bold uppercase tracking-[0.16em] text-muted">{kicker}</p>}
 
-            <ProjectBlocks blocks={blocks} />
-
-            {/* Proyectos que todavía no tienen bloques: se muestra la descripción. */}
-            {blocks.length === 0 && project.description && (
-              <p className="text-[19px] leading-[1.7] text-[#1f2937]">{project.description}</p>
+            {project.content ? (
+              <ProjectContent data={project.content} labels={{ copy: t('copy'), copied: t('copied') }} />
+            ) : (
+              project.description && <p className="text-[19px] leading-[1.7] text-[#1f2937]">{project.description}</p>
             )}
           </div>
         </Container>
