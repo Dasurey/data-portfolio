@@ -67,6 +67,15 @@ export const projectBlocks: Block[] = [
       { name: 'image', type: 'upload', relationTo: 'media', required: true },
       { name: 'caption', type: 'text' },
       {
+        name: 'frame',
+        type: 'select',
+        defaultValue: 'none',
+        options: [
+          { label: 'Plain', value: 'none' },
+          { label: 'Browser window', value: 'browser' },
+        ],
+      },
+      {
         name: 'linkUrl',
         type: 'text',
         admin: { description: 'Opcional: si lo completás, la imagen lleva a esta dirección (https://... o /projects/...).' },

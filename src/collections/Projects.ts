@@ -1,6 +1,13 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, TextFieldSingleValidation } from 'payload'
 import { projectBlocks } from '../blocks/project'
-import { BlocksFeature, FixedToolbarFeature, TextStateFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import {
+  BlocksFeature,
+  FixedToolbarFeature,
+  LinkFeature,
+  TextStateFeature,
+  lexicalEditor,
+  type LinkFields,
+} from '@payloadcms/richtext-lexical'
 
 import { textStateConfig } from '../lib/textState'
 import { getServerSideURL } from '../utilities/getURL'
@@ -109,9 +116,28 @@ export const Projects: CollectionConfig = {
       },
       editor: lexicalEditor({
         features: ({ defaultFeatures }) => [
-          ...defaultFeatures,
+          // Sin Relationship ni Upload (las imágenes van con el bloque Image) y con el link de abajo.
+          ...defaultFeatures.filter((feature) => !['relationship', 'upload', 'link'].includes(feature.key)),
+          LinkFeature({
+            // Links internos a proyectos (tienen página) y a experiencias (van a /about).
+            enabledCollections: ['projects', 'experience'],
+            fields: ({ defaultFields }) => [
+              ...defaultFields.filter((field) => !('name' in field && field.name === 'url')),
+              {
+                name: 'url',
+                type: 'text',
+                admin: { condition: (_data, siblingData) => siblingData?.linkType !== 'internal' },
+                label: ({ t }) => t('fields:enterURL'),
+                required: true,
+                validate: ((value, options) => {
+                  if ((options?.siblingData as LinkFields)?.linkType === 'internal') return true
+                  return value ? true : 'URL is required'
+                }) as TextFieldSingleValidation,
+              },
+            ],
+          }),
           FixedToolbarFeature(),
-          TextStateFeature({ state: { color: textStateConfig.color } }),
+          TextStateFeature({ state: textStateConfig }),
           BlocksFeature({ blocks: projectBlocks }),
         ],
       }),

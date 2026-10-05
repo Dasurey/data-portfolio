@@ -39,8 +39,8 @@ const base = [
   '[&>ul]:mb-5 [&>ul]:list-disc [&>ul]:pl-5 [&>ol]:mb-5 [&>ol]:list-decimal [&>ol]:pl-5',
   '[&_li]:mb-2 [&_li]:text-[16px] [&_li]:leading-[1.7] [&_li]:text-muted',
   '[&>blockquote]:my-6 [&>blockquote]:border-l-[3px] [&>blockquote]:border-indigo-500 [&>blockquote]:pl-4 [&>blockquote]:italic',
-  '[&_:is(p,li)_a]:text-ink [&_:is(p,li)_a]:underline [&_:is(p,li)_a]:underline-offset-2',
-  '[&_:not(pre)>code]:rounded-[5px] [&_:not(pre)>code]:bg-indigo-500/8 [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-px [&_:not(pre)>code]:text-[0.875rem] [&_:not(pre)>code]:text-pink-600',
+  '[&_:is(p,li)_a]:text-ink [&_:is(p,li)_a]:underline [&_:is(p,li)_a]:underline-offset-2 [&_:is(p,li)_a]:transition-colors [&_:is(p,li)_a:hover]:text-accent',
+  '[&_:not(pre)>code]:rounded-[5px] [&_:not(pre)>code]:bg-indigo-500/8 [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-px [&_:not(pre)>code]:text-[0.875rem] [&_:not(pre)>code]:text-[#171a26]',
 ].join(' ');
 
 const primary =
@@ -93,26 +93,42 @@ function embedUrl(url: string) {
   return null;
 }
 
-// Links internos a otros documentos del CMS (proyectos u otras páginas).
+// Links internos a documentos del CMS: los proyectos tienen página propia; las experiencias viven en /about.
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const doc = linkNode.fields.doc;
   const slug = typeof doc?.value === 'object' ? (doc.value as { slug?: string }).slug : undefined;
+  
+  if (doc?.relationTo === 'projects') return slug ? `/projects/${slug}` : '/projects';
+  if (doc?.relationTo === 'experience') return '/about';
   if (!slug) return '#';
-  return doc?.relationTo === 'projects' ? `/projects/${slug}` : `/${slug}`;
+  return '/';
 };
+
+function hostOf(url?: string | null) {
+  if (!url) return null;
+  try {
+    return new URL(url).host;
+  } catch {
+    return null;
+  }
+}
 
 const makeConverters =
   (labels: Labels): JSXConvertersFunction<NodeTypes> =>
   ({ defaultConverters }) => ({
     ...defaultConverters,
     ...LinkJSXConverter({ internalDocToHref }),
+    unknown: () => null,
 
-    // Colores y resaltados del editor: se guardan bajo la clave "$" del texto.
+    // Color y resaltado del editor: dos estados que se combinan en la misma palabra.
     text: (args) => {
-      const base = defaultConverters.text(args);
-      const key = (args.node as { $?: Record<string, string> }).$?.color;
-      const css = key ? textStateConfig.color[key]?.css : undefined;
-      if (!css) return base;
+      const content = defaultConverters.text(args);
+      const state = (args.node as { $?: Record<string, string> }).$;
+      const css = {
+        ...textStateConfig.color[state?.color ?? '']?.css,
+        ...textStateConfig.highlight[state?.highlight ?? '']?.css,
+      };
+      if (Object.keys(css).length === 0) return content;
 
       const style = Object.fromEntries(
         Object.entries(css).map(([prop, value]) => [
@@ -120,7 +136,7 @@ const makeConverters =
           value,
         ]),
       );
-      return <span style={style}>{base}</span>;
+      return <span style={style}>{content}</span>;
     },
 
     blocks: {
@@ -150,26 +166,43 @@ const makeConverters =
         if (!media?.url) return null;
 
         const picture = (
-          <div className="overflow-hidden rounded-[14px] shadow-[0_22px_50px_-26px_rgba(23,26,38,0.5)]">
-            <Image
-              src={media.url}
-              alt={media.alt}
-              width={media.width ?? 1600}
-              height={media.height ?? 900}
-              sizes="(min-width: 860px) 825px, 100vw"
-              className="block h-auto w-full"
-            />
-          </div>
+          <Image
+            src={media.url}
+            alt={media.alt}
+            width={media.width ?? 1600}
+            height={media.height ?? 900}
+            sizes="(min-width: 860px) 825px, 100vw"
+            className="block h-auto w-full"
+          />
         );
+
+        const framed =
+          node.fields.frame === 'browser' ? (
+            <div className="overflow-hidden rounded-[14px] border border-slate-900/10 bg-white shadow-[0_22px_50px_-24px_rgba(15,23,42,0.55)]">
+              <div className="flex items-center gap-2 border-b border-[#e4e6f0] bg-[#f2f3f9] px-3.5 py-2.5">
+                <span aria-hidden="true" className="flex gap-2">
+                  <span className="size-2.5 rounded-full bg-line" />
+                  <span className="size-2.5 rounded-full bg-line" />
+                  <span className="size-2.5 rounded-full bg-line" />
+                </span>
+                <span className="flex-1 truncate text-center font-mono text-[11px] text-muted">
+                  {hostOf(node.fields.linkUrl) ?? ''}
+                </span>
+              </div>
+              {picture}
+            </div>
+          ) : (
+            <div className="overflow-hidden rounded-[14px] shadow-[0_22px_50px_-26px_rgba(23,26,38,0.5)]">{picture}</div>
+          );
 
         return (
           <figure className="my-7">
             {node.fields.linkUrl ? (
               <SmartLink href={node.fields.linkUrl} newTab={node.fields.newTab} className="block">
-                {picture}
+                {framed}
               </SmartLink>
             ) : (
-              picture
+              framed
             )}
             {node.fields.caption && (
               <figcaption className="mt-3 text-center text-[15px] leading-[1.6] text-[#4b5563]">

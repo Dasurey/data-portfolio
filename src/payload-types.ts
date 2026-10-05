@@ -813,6 +813,7 @@ export interface PrjMetricsBlock {
 export interface PrjImageBlock {
   image: number | Media;
   caption?: string | null;
+  frame?: ('none' | 'browser') | null;
   /**
    * Opcional: si lo completás, la imagen lleva a esta dirección (https://... o /projects/...).
    */
