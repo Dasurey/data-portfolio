@@ -1,11 +1,19 @@
 import type { CollectionConfig } from 'payload'
 import { projectBlocks } from '../blocks/project'
+import { BlocksFeature, FixedToolbarFeature, TextStateFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+
+import { textStateConfig } from '../lib/textState'
+import { getServerSideURL } from '../utilities/getURL'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
+        livePreview: {
+      url: ({ data }) => `${getServerSideURL()}/projects/${data?.slug}`,
+    },
+    preview: (doc) => (doc?.slug ? `${getServerSideURL()}/projects/${doc.slug}` : null),
   },
   // Habilitamos localización para que cada campo pueda tener versión EN y ES
   access: {
@@ -97,14 +105,21 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
-      name: 'blocks',
-      type: 'blocks',
-      labels: { singular: 'Block', plural: 'Blocks' },
+      name: 'content',
+      type: 'richText',
+      localized: true,
       admin: {
         description:
-          'Cuerpo de la página del proyecto, en el orden en que se muestra (arrastrá para reordenar). La portada y la línea con los filtros son fijas.',
+          'Escribí con "/" para insertar títulos, listas, notas, imágenes, videos, código y botones. Seleccioná texto para darle formato, link, color o resaltado.',
       },
-      blocks: projectBlocks,
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          FixedToolbarFeature(),
+          TextStateFeature({ state: { color: textStateConfig.color } }),
+          BlocksFeature({ blocks: projectBlocks }),
+        ],
+      }),
     },
   ],
 }
