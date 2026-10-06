@@ -8,9 +8,10 @@ import {
   type ExplorerFilter,
   type ExplorerSection,
 } from '@/components/projects/ProjectsExplorer';
-import { RESUME_URL } from '@/config/site';
+
 import type { Locale } from '@/i18n/config';
 import type { Project } from '@/payload-types';
+import { getSiteSettings } from '@/lib/site-settings';
 
 // Una relación llega como id o como documento (según `depth`): lo normalizamos a id.
 type Ref = number | { id: number };
@@ -83,6 +84,8 @@ export default async function ProjectsPage() {
     return label && ids.length > 0 ? [{ id: String(filterId), label, ids }] : [];
   });
 
+  const { resumeUrl } = await getSiteSettings();
+
   return (
     <ProjectsExplorer
       kicker={t('kicker')}
@@ -94,7 +97,7 @@ export default async function ProjectsPage() {
       sections={sections}
       featured={featured ? <FeaturedProject project={featured} /> : null}
       featuredId={featured?.id ?? null}
-      cta={RESUME_URL ? { text: t('cta'), label: t('viewResume'), href: RESUME_URL } : null}
+      cta={resumeUrl ? { text: t('cta'), label: t('viewResume'), href: resumeUrl } : null}
     />
   );
 }
