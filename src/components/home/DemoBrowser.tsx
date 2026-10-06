@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRef, useState } from 'react';
+import { BrandMark } from '@/components/ui/BrandMark';
 
 type Props = {
   url: string;
@@ -68,7 +69,7 @@ export function DemoBrowser({ url, host, title, imageSrc, imageAlt, labels }: Pr
       >
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-[11px]">
-            <BrandMark size={28} className="rounded-lg bg-white p-[2px]" />
+            <BrandMark />
             <span className="font-display text-base font-bold">{title}</span>
             <span className="truncate font-mono text-[11px] text-dark-link">{host}</span>
           </div>

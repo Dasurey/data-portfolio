@@ -20,7 +20,7 @@ export async function Header() {
     <header className="sticky top-0 z-40 border-b border-ink/6 bg-white/70 backdrop-blur-lg backdrop-saturate-180">
       <Container className="flex items-center justify-between gap-6 py-[11px]">
         <Link href="/" className={`inline-flex items-center gap-3 rounded-md ${focusRing}`}>
-          <BrandMark size={40} className="shrink-0" />
+          <BrandMark />
           <span className="flex flex-col leading-[1.1]">
             <span className="font-display text-[1.15rem] font-bold tracking-[-0.025em] text-ink">
               {SITE_NAME}
