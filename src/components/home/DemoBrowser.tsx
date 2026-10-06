@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 
-import { SITE_INITIALS } from '@/config/site';
-
 type Props = {
   url: string;
   host: string;
@@ -70,12 +68,7 @@ export function DemoBrowser({ url, host, title, imageSrc, imageAlt, labels }: Pr
       >
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-[11px]">
-            <span
-              aria-hidden="true"
-              className="grid size-7 place-items-center rounded-lg bg-brand font-display text-xs font-bold"
-            >
-              {SITE_INITIALS}
-            </span>
+            <BrandMark size={28} className="rounded-lg bg-white p-[2px]" />
             <span className="font-display text-base font-bold">{title}</span>
             <span className="truncate font-mono text-[11px] text-dark-link">{host}</span>
           </div>

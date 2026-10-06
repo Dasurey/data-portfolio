@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { Container } from '@/components/ui/Container';
-import { CONTACT_EMAIL, EXTERNAL_LINK, NAV_ITEMS, SITE_INITIALS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
+import { CONTACT_EMAIL, EXTERNAL_LINK, NAV_ITEMS, SITE_NAME, SOCIAL_LINKS } from '@/config/site';
 import { getSiteSettings } from '@/lib/site-settings';
+import { BrandMark } from '@/components/ui/BrandMark';
 
 import { FooterNavLink } from './FooterNavLink';
 
@@ -25,12 +26,7 @@ export async function Footer() {
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:gap-9 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-12">
           <div>
             <Link href="/" className={`mb-[18px] inline-flex items-center gap-3 rounded-md ${focusRing}`}>
-              <span
-                aria-hidden="true"
-                className="grid size-[34px] place-items-center rounded-[9px] bg-brand font-display text-[0.95rem] font-bold text-white"
-              >
-                {SITE_INITIALS}
-              </span>
+              <BrandMark size={34} className="rounded-[9px] bg-white p-[3px]" />
               <span className="font-display text-[1.08rem] font-bold tracking-[-0.025em] text-white">{SITE_NAME}</span>
             </Link>
 

@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 
 import { Container } from '@/components/ui/Container';
-import { SITE_INITIALS, SITE_NAME } from '@/config/site';
+import { SITE_NAME } from '@/config/site';
+import { BrandMark } from '@/components/ui/BrandMark';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { MainNav } from './MainNav';
@@ -19,12 +20,7 @@ export async function Header() {
     <header className="sticky top-0 z-40 border-b border-ink/6 bg-white/70 backdrop-blur-lg backdrop-saturate-180">
       <Container className="flex items-center justify-between gap-6 py-[11px]">
         <Link href="/" className={`inline-flex items-center gap-3 rounded-md ${focusRing}`}>
-          <span
-            aria-hidden="true"
-            className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-brand font-display text-base font-bold text-white shadow-[0_6px_16px_-7px_rgba(79,70,229,0.7)]"
-          >
-            {SITE_INITIALS}
-          </span>
+          <BrandMark size={40} className="shrink-0" />
           <span className="flex flex-col leading-[1.1]">
             <span className="font-display text-[1.15rem] font-bold tracking-[-0.025em] text-ink">
               {SITE_NAME}

@@ -89,8 +89,12 @@ export async function HeroDiagram() {
 
       <FanOut />
       <div className="grid grid-cols-3 gap-[9px]">
-        {models.map((model) => (
-          <div key={model.title} className="rounded-[11px] border border-white/10 bg-white/[0.035] px-2.5 py-[11px] text-center">
+        {models.map((model, index) => (
+          <div
+            key={model.title}
+            style={{ animationDelay: `${index * 2.2}s` }}
+            className="animate-[nodeGlow_6.6s_ease-in-out_infinite] rounded-[11px] border border-white/10 bg-white/[0.035] px-2.5 py-[11px] text-center motion-reduce:animate-none"
+          >
             <b className="block text-[12.5px] font-semibold leading-[1.35] text-line">{model.title}</b>
             <span className="mt-1.5 block font-mono text-[9.5px] text-dark-soft">{model.sub}</span>
           </div>
