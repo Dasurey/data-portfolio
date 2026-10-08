@@ -97,7 +97,7 @@ function embedUrl(url: string) {
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const doc = linkNode.fields.doc;
   const slug = typeof doc?.value === 'object' ? (doc.value as { slug?: string }).slug : undefined;
-  
+
   if (doc?.relationTo === 'projects') return slug ? `/projects/${slug}` : '/projects';
   if (doc?.relationTo === 'experience') return '/about';
   if (!slug) return '#';
@@ -122,7 +122,9 @@ const makeConverters =
 
     // Color y resaltado del editor: dos estados que se combinan en la misma palabra.
     text: (args) => {
-      const content = defaultConverters.text(args);
+      // `defaultConverters.text` está tipado como una unión amplia: lo tratamos como función.
+      const renderText = defaultConverters.text as unknown as (a: typeof args) => ReactNode;
+      const content = renderText(args);
       const state = (args.node as { $?: Record<string, string> }).$;
       const css = {
         ...textStateConfig.color[state?.color ?? '']?.css,
