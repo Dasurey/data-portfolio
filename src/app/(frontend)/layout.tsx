@@ -60,7 +60,7 @@ export default async function FrontendLayout({ children }: { children: ReactNode
   const locale = await getLocale();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang={locale} data-scroll-behavior="smooth" className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js-reveal')" }} />
       </head>

@@ -22,6 +22,12 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: 'users',
+    components: {
+      graphics: {
+        Logo: '/components/Logo/Logo#Logo',
+        Icon: '/components/Logo/Logo#Logo',
+      },
+    },
     // Limpio de componentes SCSS que dan error
     importMap: {
       baseDir: path.resolve(dirname),
