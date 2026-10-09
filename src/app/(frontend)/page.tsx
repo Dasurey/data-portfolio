@@ -52,6 +52,7 @@ export default async function HomePage() {
                 height={192}
                 priority
                 className="mb-[22px] size-24 rounded-full object-cover ring-[3px] ring-accent/25 ring-offset-[3px] ring-offset-white"
+                loading="eager"
               />
             ) : (
               <div

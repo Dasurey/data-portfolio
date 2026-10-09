@@ -56,6 +56,7 @@ export default async function TeoPage() {
                 priority
                 sizes="(min-width: 1024px) 540px, 100vw"
                 className="block h-auto w-full rounded-[20px] shadow-[0_28px_60px_-26px_rgba(23,26,38,0.5)]"
+                loading="eager"
               />
             </div>
           )}

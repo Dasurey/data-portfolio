@@ -53,6 +53,7 @@ export default async function AboutPage() {
                   height={660}
                   priority
                   className={`${photoClass} object-cover object-[center_18%]`}
+                  loading="eager"
                 />
               ) : (
                 <div
