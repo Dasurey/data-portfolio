@@ -21,7 +21,7 @@ export const SOCIAL_LINKS = [
 ] as const
 
 // Link externo del header y del footer (el lugar de "The Wife" en la base).
-export const EXTERNAL_LINK: { label: string; href: string } | null = {
+export const EXTERNAL_LINK: { label: string; href: string } | null = null/*= {
   label: 'Blog',
   href: 'https://example.com',
-};
+}; */
