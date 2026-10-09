@@ -7,6 +7,7 @@ import sharp from 'sharp'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { Documents } from './collections/Documents'
 import { SiteSettings } from './globals/SiteSettings'
+import { resendAdapter } from '@payloadcms/email-resend'
 
 import { Projects } from './collections/Projects'
 import { Media } from './collections/Media'
@@ -78,4 +79,9 @@ export default buildConfig({
       clientUploads: false,
     }),
   ],
+  email: resendAdapter({
+    apiKey: process.env.RESEND_API_KEY || '',
+    defaultFromAddress: 'dario.asurey@gmail.com',
+    defaultFromName: 'Portafolio de Dario Asurey - Data',
+  }),
 })

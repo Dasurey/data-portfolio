@@ -4,7 +4,8 @@ export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     staticDir: 'media',
-        imageSizes: [
+    imageSizes: [
+      // Tamaños de imagen predefinidos para miniaturas y optimización de carga
       {
         name: 'thumbnail',
         width: 400,
@@ -14,6 +15,8 @@ export const Media: CollectionConfig = {
     ],
     adminThumbnail: 'thumbnail',
     mimeTypes: ['image/*'],
+    // Reduce el tamaño de las imágenes para optimizar la carga y el almacenamiento
+    resizeOptions: { width: 2000, withoutEnlargement: true },
   },
   access: {
     read: () => true,
