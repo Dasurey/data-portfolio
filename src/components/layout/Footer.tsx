@@ -26,8 +26,8 @@ export async function Footer() {
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:gap-9 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-12">
           <div>
             <Link href="/" className={`mb-[18px] inline-flex items-center gap-3 rounded-md ${focusRing}`}>
-                <span className="grid size-[42px] place-items-center rounded-[10px] bg-white">
-                <BrandMark size={34} />
+              <span className="grid size-[56px] place-items-center rounded-xl">
+                <BrandMark size={46} />
               </span>
               <span className="font-display text-[1.08rem] font-bold tracking-[-0.025em] text-white">{SITE_NAME}</span>
             </Link>
