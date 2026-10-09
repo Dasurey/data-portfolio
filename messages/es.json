@@ -1,56 +1,75 @@
 {
+  "Metadata": {
+    "title": "Portafolio",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+  },
+  "Header": {
+    "role": "Ingeniería · Analítica de datos"
+  },
   "Home": {
-    "role": "Ingeniero y Arquitecto de Datos",
-    "heroTitle": "Construyendo",
-    "heroTitleItalic": "ecosistemas de datos.",
-    "heroDescription": "Ayudo a las empresas a transformar flujos de datos caóticos en arquitecturas escalables, seguras y listas para el análisis.",
-    "selectedWorks": "Proyectos Seleccionados",
-    "viewAll": "Ver todos",
-    "noProjects": "Aún no hay proyectos publicados.",
-    "architecture": "Arquitectura",
-    "createFirst": "+ Crear primer proyecto",
-    "resume": "Currículum",
-    "built": "Hecho con Next.js, Payload CMS y Neon",
-    "viewPortfolio": "Ver portafolio",
-    "stat1Num": "SQL · Python",
-    "stat1Label": "Stack analítico principal",
-    "stat2Num": "ETL",
+    "role": "Ingeniero y Analista de Datos",
+    "heroDescription": "Convierto bases de datos desordenadas en arquitecturas escalables y dashboards listos para la toma de decisiones.",
+    "stat1Num": "SQL · Python · Node.js",
+    "stat1Label": "Extracción, scripts y análisis",
+    "stat2Num": "ETL · ELT",
     "stat2Label": "Pipelines y modelado",
-    "stat3Num": "BI",
-    "stat3Label": "Dashboards y reportes",
+    "stat3Num": "Power BI",
+    "stat3Label": "Modelado DAX y reportes visuales",
+    "viewPortfolio": "Ver proyectos",
+    "resume": "Currículum",
     "diagram": {
-      "label": "plataforma de datos · arquitectura",
-      "live": "en vivo",
-      "sourceEyebrow": "origen",
-      "sourceTitle": "Sistemas operativos y archivos",
-      "transportEyebrow": "ingesta",
-      "transportTitle": "ETL en Python → Data warehouse",
-      "node1": "Modelado de datos",
-      "node1Sub": "esquema estrella",
-      "node2": "Controles de calidad",
-      "node2Sub": "validación",
-      "node3": "Capa de reportes",
-      "node3Sub": "SQL · BI",
-      "finalEyebrow": "entregado al negocio",
-      "finalTitle": "Dashboards listos para decidir",
-      "caption": "La forma de los proyectos de abajo: datos crudos de entrada, información confiable de salida."
+      "label": "CICLO DE VIDA DEL DATO • DE PRINCIPIO A FIN",
+      "live": "Pipeline de Datos",
+      "sourceEyebrow": "Fuentes de datos",
+      "sourceTitle": "APIs, bases transaccionales (ERPs) y archivos planos.",
+      "transportEyebrow": "Procesos ETL y ELT",
+      "transportTitle": "Extracción, limpieza y transformación automatizada.",
+      "node1": "Almacenamiento",
+      "node1Sub": "Bases de datos",
+      "node2": "Modelado de datos",
+      "node2Sub": "Vistas y diseño relacional",
+      "node3": "Lógica de negocio",
+      "node3Sub": "Cálculos y medidas DAX",
+      "finalEyebrow": "Visualización estratégica",
+      "finalTitle": "Dashboards interactivos en Power BI listos para decidir.",
+      "caption": "Flujo integral: desde la captura y depuración del dato crudo hasta la entrega de inteligencia comercial."
     },
+    "noProjects": "Aún no hay proyectos publicados.",
+    "seeAll": "Ver todos los proyectos",
+    "selectedWorks": "Proyectos Seleccionados",
     "workTitle": "De datos crudos a decisiones",
     "workSub": "Una selección de proyectos de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
     "featuredBadge": "Proyecto destacado",
     "readMore": "Leer el caso de estudio",
-    "seeAll": "Ver todos los proyectos",
     "liveBadge": "Demo en vivo · podés probarla",
     "areasKicker": "02 — En qué trabajo",
     "areasTitle": "De fuentes crudas a información confiable",
     "areasSub": "Los problemas que disfruto resolver.",
     "areas": {
-      "pipelines": { "title": "Pipelines de datos", "desc": "Flujos de ingesta y transformación que convierten fuentes crudas en tablas listas para analizar." },
-      "warehousing": { "title": "Data warehousing", "desc": "Modelos dimensionales y esquemas estrella que mantienen los reportes rápidos, consistentes y fáciles de extender." },
-      "bi": { "title": "Analítica y BI", "desc": "Dashboards y reportes que responden preguntas de negocio con visuales claros y honestos." },
-      "quality": { "title": "Calidad de datos", "desc": "Validación, limpieza y monitoreo para poder confiar en los números." },
-      "automation": { "title": "Automatización de procesos", "desc": "Scripts y flujos programados que reemplazan tareas operativas manuales y repetitivas." },
-      "ai": { "title": "IA aplicada", "desc": "Integración de IA en los flujos de datos para acelerar el análisis y los reportes." }
+      "pipelines": {
+        "title": "Pipelines de datos",
+        "desc": "Flujos de ingesta y transformación que convierten fuentes crudas en tablas listas para analizar."
+      },
+      "warehousing": {
+        "title": "Data warehousing",
+        "desc": "Modelos dimensionales y esquemas estrella que mantienen los reportes rápidos, consistentes y fáciles de extender."
+      },
+      "bi": {
+        "title": "Analítica y BI",
+        "desc": "Dashboards y reportes que responden preguntas de negocio con visuales claros y honestos."
+      },
+      "quality": {
+        "title": "Calidad de datos",
+        "desc": "Validación, limpieza y monitoreo para poder confiar en los números."
+      },
+      "automation": {
+        "title": "Automatización de procesos",
+        "desc": "Scripts y flujos programados que reemplazan tareas operativas manuales y repetitivas."
+      },
+      "ai": {
+        "title": "IA aplicada",
+        "desc": "Integración de IA en los flujos de datos para acelerar el análisis y los reportes."
+      }
     },
     "skillsKicker": "03 — Skills y herramientas",
     "skillsTitle": "El stack al que recurro",
@@ -63,7 +82,8 @@
     "aboutP2": "Resuelvo problemas operativos con datos: limpio bases desordenadas, armo pipelines confiables y convierto los resultados en reportes visuales claros, integrando IA donde realmente aporta.",
     "aboutP3": "Lo que me mueve es mejorar un proceso de forma medible para las personas que dependen de él.",
     "aboutMore": "Más sobre mí",
-    "aboutContact": "Contactame"
+    "aboutContact": "Contactame",
+    "built": "Hecho con Next.js, Payload CMS y Neon"
   },
   "About": {
     "title": "Hola, soy Dario Asurey",
@@ -82,13 +102,6 @@
     "selectedWork": "Trabajos destacados",
     "resume": "Currículum",
     "badgeCurrent": "Actual"
-  },
-  "Metadata": {
-    "title": "Portafolio",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-  },
-  "Header": {
-    "role": "Analítica · ingeniería de datos"
   },
   "Nav": {
     "label": "Navegación principal",

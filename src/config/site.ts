@@ -17,7 +17,7 @@ export const NAV_ITEMS = [
 export const SOCIAL_LINKS = [
   { href: 'https://www.linkedin.com/in/darioasurey', label: 'LinkedIn' },
   { href: 'https://github.com/Dasurey', label: 'GitHub' },
-  { href: 'https://medium.com/@your-handle', label: 'Medium' },
+  // { href: 'https://medium.com/@your-handle', label: 'Medium' },
 ] as const
 
 // Link externo del header y del footer (el lugar de "The Wife" en la base).
