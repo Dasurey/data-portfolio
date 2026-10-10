@@ -34,6 +34,15 @@ export const Projects: CollectionConfig = {
       localized: true, // Campo traducible
     },
     {
+      name: 'secondaryTitle',
+      type: 'text',
+      required: true,
+      localized: true,
+      admin: {
+        description: 'Título secundario que aparece en la columna de Skills',
+      },
+    },
+    {
       name: 'slug',
       type: 'text',
       required: true,

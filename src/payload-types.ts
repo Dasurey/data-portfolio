@@ -145,6 +145,10 @@ export interface Project {
   id: number;
   title: string;
   /**
+   * Título secundario que aparece en la columna de Skills
+   */
+  secondaryTitle: string;
+  /**
    * URL amigable (ej: analitica-predictiva-vivienda)
    */
   slug: string;
@@ -446,6 +450,7 @@ export interface PayloadMigration {
  */
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
+  secondaryTitle?: T;
   slug?: T;
   description?: T;
   category?: T;
@@ -648,7 +653,7 @@ export interface Skill {
         title: string;
         icon?: ('database' | 'chart' | 'sparkles' | 'workflow' | 'shield' | 'zap' | 'layers' | 'users') | null;
         /**
-         * Proyectos de esta columna (casos de estudio). Las herramientas se calculan solas con el Tech Stack de cada proyecto.
+         * Proyectos de esta columna (casos de estudio).
          */
         projects?: (number | Project)[] | null;
         /**

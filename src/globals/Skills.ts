@@ -43,8 +43,7 @@ export const Skills: GlobalConfig = {
           relationTo: 'projects',
           hasMany: true,
           admin: {
-            description:
-              'Proyectos de esta columna (casos de estudio). Las herramientas se calculan solas con el Tech Stack de cada proyecto.',
+            description: 'Proyectos de esta columna (casos de estudio).',
           },
         },
         {
