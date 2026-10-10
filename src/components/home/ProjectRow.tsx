@@ -6,7 +6,7 @@ const pill = 'rounded-full border border-accent/14 bg-accent/8 px-2.5 py-1 text-
 
 /** .row-link de la base: índice | título + stack | descripción | métricas. */
 export function ProjectRow({ project, index }: { project: Project; index: number }) {
-  const stack = (project.techStack ?? []).flatMap((s) => (s.name ? [s.name] : []));
+  const stack = (project.techStack ?? []).flatMap((tool) => (typeof tool === 'object' && tool.label ? [tool.label] : []));
   const metrics = (project.metrics ?? []).filter((m) => m.value).slice(0, 3);
   const columns =
     metrics.length > 0

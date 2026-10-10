@@ -22,7 +22,7 @@ export async function FeaturedProject({ project }: { project: Project }) {
   const t = await getTranslations('Home');
   const tp = await getTranslations('Projects');
 
-  const stack = (project.techStack ?? []).flatMap((s) => (s.name ? [s.name] : []));
+  const stack = (project.techStack ?? []).flatMap((tool) => (typeof tool === 'object' && tool.label ? [tool.label] : []));
   const image = typeof project.image === 'object' ? project.image : null;
   const host = hostOf(project.liveUrl);
   const detailHref = `/projects/${project.slug}`;

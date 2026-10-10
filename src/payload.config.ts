@@ -51,8 +51,10 @@ export default buildConfig({
       slug: 'users',
       auth: true,
       access: {
+        // Solo con sesión iniciada. Con `update: () => true` cualquiera podía editar usuarios desde la API.
+        update: ({ req: { user } }) => Boolean(user),
+        // Solo se pueden eliminar usuarios si se tiene sesión iniciada.
         delete: () => false,
-        update: () => true,
       },
       fields: [],
     },
