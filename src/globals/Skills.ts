@@ -47,6 +47,16 @@ export const Skills: GlobalConfig = {
               'Proyectos de esta columna (casos de estudio). Las herramientas se calculan solas con el Tech Stack de cada proyecto.',
           },
         },
+        {
+          name: 'tools',
+          type: 'relationship',
+          relationTo: 'tools',
+          hasMany: true,
+          label: 'Skills',
+          admin: {
+            description: 'Elegí las habilidades que querés mostrar en esta columna.',
+          },
+        },
       ],
     },
   ],

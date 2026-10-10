@@ -80,15 +80,14 @@ export const Projects: CollectionConfig = {
     },
     {
       name: 'techStack',
-      type: 'array',
+      type: 'relationship',
+      relationTo: 'tools',
+      hasMany: true,
       label: 'Technical Stack',
-      minRows: 1,
-      fields: [
-        {
-          name: 'name',
-          type: 'text',
-        },
-      ],
+      admin: {
+        allowCreate: true,
+        description: 'Seleccioná las tecnologías utilizadas en este proyecto o agregá una nueva.',
+      },
     },
     {
       name: 'repositoryUrl',

@@ -7,29 +7,9 @@ import { Container } from '@/components/ui/Container';
 import { SectionHead } from '@/components/ui/SectionHead';
 import { SKILL_ICONS } from '@/config/home';
 import type { Locale } from '@/i18n/config';
-import type { Project } from '@/payload-types';
+import type { Project, Tool } from '@/payload-types';
 
 const micro = 'font-mono text-[10px] uppercase tracking-[0.14em] text-muted';
-
-/** Herramientas de una columna: unión del techStack de sus proyectos, las más usadas primero. */
-function collectTools(projects: Project[]) {
-  const counts = new Map<string, { label: string; count: number }>();
-
-  for (const project of projects) {
-    for (const item of project.techStack ?? []) {
-      const label = item.name?.trim();
-      if (!label) continue;
-
-      const key = label.toLowerCase();
-      const current = counts.get(key);
-      counts.set(key, { label: current?.label ?? label, count: (current?.count ?? 0) + 1 });
-    }
-  }
-
-  return [...counts.values()]
-    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
-    .map((tool) => tool.label);
-}
 
 /** Sección 03: .grid-skills de la base, alimentada por el global "Skills & tooling" del admin. */
 export async function SkillsSection() {
@@ -50,8 +30,13 @@ export async function SkillsSection() {
         <div className="grid gap-6 lg:grid-cols-3" data-reveal>
           {groups.map((group) => {
             const Icon = SKILL_ICONS[group.icon ?? 'database'] ?? SKILL_ICONS.database;
-            const projects = (group.projects ?? []).filter((p): p is Project => typeof p === 'object');
-            const tools = collectTools(projects).slice(0, 8);
+            const projects = (group.projects ?? []).filter(
+              (project): project is Project => typeof project === 'object' && project !== null,
+            );
+
+            const tools = (group.tools ?? []).filter(
+              (tool): tool is Tool => typeof tool === 'object' && tool !== null,
+            );
 
             return (
               <div key={group.id} className="flex flex-col rounded-[18px] border border-line bg-white p-[26px] shadow-soft">
@@ -89,13 +74,14 @@ export async function SkillsSection() {
                 {tools.length > 0 && (
                   <div className="mt-auto">
                     <p className={`${micro} mb-[11px]`}>{t('skillsTools')}</p>
+
                     <div className="flex flex-wrap gap-1.5">
                       {tools.map((tool) => (
                         <span
-                          key={tool}
+                          key={tool.id}
                           className="inline-block rounded-[7px] border border-[#eceef6] bg-[#f4f5fa] px-2.5 py-1 text-[0.74rem] font-medium text-muted"
                         >
-                          {tool}
+                          {tool.label}
                         </span>
                       ))}
                     </div>

@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     experience: Experience;
     'project-filters': ProjectFilter;
+    tools: Tool;
     documents: Document;
     users: User;
     'payload-kv': PayloadKv;
@@ -84,6 +85,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     'project-filters': ProjectFiltersSelect<false> | ProjectFiltersSelect<true>;
+    tools: ToolsSelect<false> | ToolsSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -169,12 +171,10 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
-  techStack?:
-    | {
-        name?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  /**
+   * Seleccioná las tecnologías utilizadas en este proyecto o agregá una nueva.
+   */
+  techStack?: (number | Tool)[] | null;
   repositoryUrl?: string | null;
   liveUrl?: string | null;
   image: number | Media;
@@ -207,6 +207,19 @@ export interface ProjectFilter {
   id: number;
   /**
    * Texto del botón (ej: AI, Real-Time NLP, Credit ML).
+   */
+  label: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools".
+ */
+export interface Tool {
+  id: number;
+  /**
+   * Nombre de la tecnología o herramienta, por ejemplo Python, SQL o AWS S3.
    */
   label: string;
   updatedAt: string;
@@ -374,6 +387,10 @@ export interface PayloadLockedDocument {
         value: number | ProjectFilter;
       } | null)
     | ({
+        relationTo: 'tools';
+        value: number | Tool;
+      } | null)
+    | ({
         relationTo: 'documents';
         value: number | Document;
       } | null)
@@ -441,12 +458,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
-  techStack?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
+  techStack?: T;
   repositoryUrl?: T;
   liveUrl?: T;
   image?: T;
@@ -524,6 +536,15 @@ export interface ExperienceSelect<T extends boolean = true> {
  * via the `definition` "project-filters_select".
  */
 export interface ProjectFiltersSelect<T extends boolean = true> {
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools_select".
+ */
+export interface ToolsSelect<T extends boolean = true> {
   label?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -630,6 +651,10 @@ export interface Skill {
          * Proyectos de esta columna (casos de estudio). Las herramientas se calculan solas con el Tech Stack de cada proyecto.
          */
         projects?: (number | Project)[] | null;
+        /**
+         * Elegí las habilidades que querés mostrar en esta columna.
+         */
+        tools?: (number | Tool)[] | null;
         id?: string | null;
       }[]
     | null;
@@ -711,6 +736,7 @@ export interface SkillsSelect<T extends boolean = true> {
         title?: T;
         icon?: T;
         projects?: T;
+        tools?: T;
         id?: T;
       };
   updatedAt?: T;

@@ -16,6 +16,7 @@ import { Skills } from './globals/Skills'
 import { Teo } from './globals/Teo'
 import { ProjectsPage } from './globals/ProjectsPage'
 import { ProjectFilters } from './collections/ProjectFilters'
+import { Tools } from './collections/Tools'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -44,6 +45,7 @@ export default buildConfig({
     Media,
     Experience,
     ProjectFilters,
+    Tools,
     Documents,
     {
       slug: 'users',
