@@ -23,6 +23,7 @@
     "stat3Label": "Modelado DAX y reportes visuales",
     "viewPortfolio": "Ver proyectos",
     "resume": "Currículum",
+
     "diagram": {
       "label": "CICLO DE VIDA DEL DATO • DE PRINCIPIO A FIN",
       "live": "Pipeline de Datos",
@@ -40,14 +41,16 @@
       "finalTitle": "Dashboards interactivos en Power BI listos para decidir.",
       "caption": "Flujo integral: desde la captura y depuración del dato crudo hasta la entrega de inteligencia comercial."
     },
-    "noProjects": "Aún no hay proyectos publicados.",
-    "seeAll": "Ver todos los proyectos",
+
     "selectedWorks": "Proyectos Seleccionados",
     "workTitle": "De datos crudos a decisiones",
-    "workSub": "Una selección de proyectos de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
+    "workSub": "Una selección de proyectos de ingeniería y análisis de datos, desde pipelines y modelado relacional hasta dashboards interactivos.",
+    "liveBadge": "Dashboard Interactivo",
     "featuredBadge": "Proyecto destacado",
     "readMore": "Leer el caso de estudio",
-    "liveBadge": "Demo en vivo · podés probarla",
+    "seeAll": "Ver todos los proyectos",
+    "noProjects": "Aún no hay proyectos publicados.",
+
     "areasKicker": "02 — En qué trabajo",
     "areasTitle": "De fuentes crudas a información confiable",
     "areasSub": "Los problemas que disfruto resolver.",
@@ -56,9 +59,9 @@
         "title": "Pipelines de datos",
         "desc": "Flujos de ingesta y transformación que convierten fuentes crudas en tablas listas para analizar."
       },
-      "warehousing": {
-        "title": "Data warehousing",
-        "desc": "Modelos dimensionales y esquemas estrella que mantienen los reportes rápidos, consistentes y fáciles de extender."
+      "database": {
+        "title": "Bases de Datos y SQL",
+        "desc": "Diseño de bases de datos, optimización de consultas SQL y creación de vistas para estructurar la información de manera eficiente."
       },
       "bi": {
         "title": "Analítica y BI",
@@ -73,16 +76,18 @@
         "desc": "Scripts y flujos programados que reemplazan tareas operativas manuales y repetitivas."
       },
       "ai": {
-        "title": "IA aplicada",
-        "desc": "Integración de IA en los flujos de datos para acelerar el análisis y los reportes."
+        "title": "IA Aplicada a Datos",
+        "desc": "Exploración e integración de APIs de Inteligencia Artificial dentro de flujos tradicionales para potenciar la automatización y el análisis de datos."
       }
     },
+
     "skillsKicker": "03 — Skills y herramientas",
     "skillsTitle": "El stack al que recurro",
-    "skillsSub": "Las herramientas que uso para llevar los datos del origen a la decisión. Tocá un proyecto para leer el caso de estudio.",
+    "skillsSub": "Las tecnologías que utilizo para transformar datos crudos en decisiones estratégicas. Seleccioná un proyecto para explorar la arquitectura y el código.",
     "skillsFocus": "Casos de estudio",
-    "skillsEmpty": "Todavía no hay proyectos asociados.",
     "skillsTools": "Herramientas",
+    "skillsEmpty": "Todavía no hay proyectos asociados.",
+    
     "aboutKicker": "04 — Sobre mí",
     "aboutP1": "Soy estudiante de Ingeniería en Sistemas de Información en la UTN FRBA y ayudante de cátedra de Paradigmas de Programación, con foco en analítica de datos y automatización de procesos.",
     "aboutP2": "Resuelvo problemas operativos con datos: limpio bases desordenadas, armo pipelines confiables y convierto los resultados en reportes visuales claros, integrando IA donde realmente aporta.",
@@ -132,6 +137,8 @@
     "built": "Hecho con Next.js, Payload CMS y Neon"
   },
   "Projects": {
+    "liveDemo": "Explorar dashboard",
+    "runHere": "Ver en pantalla completa",
     "kicker": "Proyectos",
     "title": "Proyectos de datos, del origen a la decisión",
     "all": "Todo el trabajo",
@@ -141,11 +148,9 @@
     "viewResume": "Ver mi currículum",
     "sub": "Trabajo de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
     "back": "Todos los proyectos",
-    "liveDemo": "Abrir la demo en vivo",
     "repository": "Ver el código",
     "viewProject": "Ver proyecto",
     "empty": "Todavía no hay proyectos publicados.",
-    "runHere": "Ejecutarla acá",
     "runNote": "abre la app real a pantalla completa",
     "openNewTab": "Abrir en una pestaña nueva",
     "close": "Cerrar",

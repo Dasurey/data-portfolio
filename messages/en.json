@@ -46,7 +46,7 @@
     "areasSub": "The problems I enjoy solving.",
     "areas": {
       "pipelines": { "title": "Data Pipelines", "desc": "Ingestion and transformation workflows that turn raw sources into analysis-ready tables." },
-      "warehousing": { "title": "Data Warehousing", "desc": "Dimensional models and star schemas that keep reporting fast, consistent and easy to extend." },
+      "database": { "title": "Data database", "desc": "Dimensional models and star schemas that keep reporting fast, consistent and easy to extend." },
       "bi": { "title": "Analytics & BI", "desc": "Dashboards and reports that answer business questions with clear, honest visuals." },
       "quality": { "title": "Data Quality", "desc": "Validation, cleaning and monitoring so the numbers can be trusted." },
       "automation": { "title": "Process Automation", "desc": "Scripts and scheduled workflows that replace manual, repetitive operational tasks." },

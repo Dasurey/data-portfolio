@@ -13,7 +13,7 @@ import {
 /** Sección 02. `key` apunta a messages → Home.areas.<key> */
 export const AREAS: { key: string; icon: LucideIcon }[] = [
   { key: 'pipelines', icon: Workflow },
-  { key: 'warehousing', icon: Database },
+  { key: 'database', icon: Database },
   { key: 'bi', icon: ChartColumn },
   { key: 'quality', icon: ShieldCheck },
   { key: 'automation', icon: Zap },
