@@ -322,7 +322,7 @@ export interface Experience {
   /**
    * Seleccioná las tecnologías utilizadas en este proyecto o agregá una nueva.
    */
-  techStack: (number | Tool)[];
+  techStack?: (number | Tool)[] | null;
   links?:
     | {
         label?: string | null;

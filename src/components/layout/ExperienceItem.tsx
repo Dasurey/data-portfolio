@@ -38,7 +38,7 @@ export function ExperienceItem({ item, isLast, nowLabel, currentLabel }: Props) 
     return text ? [text] : [];
   });
 
-  const stack = (item.stack ?? []).flatMap((s) => (s.name ? [s.name] : []));
+  const stack = (item.techStack ?? []).flatMap((tool) => (typeof tool === 'object' && tool.label ? [tool.label] : []));
 
   const links = (item.links ?? []).flatMap((l) =>
     l.url && l.label ? [{ id: l.id ?? l.url, url: l.url, label: l.label }] : [],

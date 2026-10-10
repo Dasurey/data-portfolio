@@ -32,7 +32,6 @@ export const Experience: CollectionConfig = {
       name: 'techStack',
       type: 'relationship',
       relationTo: 'tools',
-      required: true,
       hasMany: true,
       admin: {
         description: 'Seleccioná las tecnologías utilizadas en este proyecto o agregá una nueva.',
