@@ -18,7 +18,7 @@ export const Tools: CollectionConfig = {
       name: 'label',
       type: 'text',
       required: true,
-      unique: true,
+      localized: true,
       admin: {
         description: 'Nombre de la tecnología o herramienta, por ejemplo Python, SQL o AWS S3.',
       },
