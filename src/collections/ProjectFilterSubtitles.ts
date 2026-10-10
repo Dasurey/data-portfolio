@@ -1,8 +1,9 @@
 import type { CollectionConfig } from 'payload'
 
-/** Los botones de filtro de /projects (Anomaly detection, Big data, Sprint (internship)…). Cada proyecto elige cuáles tiene. */
+
+/** Texto de la línea gris bajo la portada de la página del proyecto de /projects (Anomaly detection, Big data, Sprint (internship)…). Cada proyecto elige cuáles tiene. */
 export const ProjectFilterSubtitles: CollectionConfig = {
-  slug: 'project-filterSubtitles',
+  slug: 'project-filter-subtitles',
   labels: { singular: 'Subtitle', plural: 'Subtitles' },
   admin: {
     useAsTitle: 'label',
@@ -17,7 +18,7 @@ export const ProjectFilterSubtitles: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
-      admin: { description: 'Texto del botón (ej: Anomaly detection, Big data, Sprint (internship)...)' },
+      admin: { description: 'Texto de la línea gris bajo la portada de la página del proyecto (ej: Anomaly detection, Big data, Sprint (internship)...)' },
     },
   ],
 }

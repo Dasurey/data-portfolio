@@ -58,7 +58,7 @@ export async function SkillsSection() {
                           href={`/projects/${project.slug}`}
                           className="-mx-3 flex items-center justify-between gap-3 rounded-[10px] px-3 py-[9px] text-[0.92rem] font-semibold text-accent-ink transition-colors hover:bg-accent/7 hover:text-accent motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                         >
-                          <span>{project.secondaryTitle}</span>
+                          <span>{project.secondaryTitle || project.title}</span>
                           <span aria-hidden="true" className="text-[0.85rem] text-accent/55">
                             →
                           </span>

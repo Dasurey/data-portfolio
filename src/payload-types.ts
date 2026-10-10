@@ -72,7 +72,7 @@ export interface Config {
     experience: Experience;
     'project-filters': ProjectFilter;
     'project-categories': ProjectCategory;
-    'project-filterSubtitles': ProjectFilterSubtitle;
+    'project-filter-subtitles': ProjectFilterSubtitle;
     tools: Tool;
     documents: Document;
     users: User;
@@ -88,7 +88,7 @@ export interface Config {
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     'project-filters': ProjectFiltersSelect<false> | ProjectFiltersSelect<true>;
     'project-categories': ProjectCategoriesSelect<false> | ProjectCategoriesSelect<true>;
-    'project-filterSubtitles': ProjectFilterSubtitlesSelect<false> | ProjectFilterSubtitlesSelect<true>;
+    'project-filter-subtitles': ProjectFilterSubtitlesSelect<false> | ProjectFilterSubtitlesSelect<true>;
     tools: ToolsSelect<false> | ToolsSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -151,7 +151,7 @@ export interface Project {
   /**
    * Título secundario que aparece en la columna de Skills
    */
-  secondaryTitle: string;
+  secondaryTitle?: string | null;
   /**
    * URL amigable (ej: analitica-predictiva-vivienda)
    */
@@ -218,7 +218,7 @@ export interface Project {
 export interface ProjectCategory {
   id: number;
   /**
-   * Texto del botón (ej: Anomaly Detection, Sprint, Generative AI).
+   * Etiqueta chica que aparece sobre el título del proyecto en las listas (ej: Anomaly Detection, Sprint, Generative AI).
    */
   label: string;
   updatedAt: string;
@@ -239,12 +239,12 @@ export interface ProjectFilter {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "project-filterSubtitles".
+ * via the `definition` "project-filter-subtitles".
  */
 export interface ProjectFilterSubtitle {
   id: number;
   /**
-   * Texto del botón (ej: Anomaly detection, Big data, Sprint (internship)...)
+   * Texto de la línea gris bajo la portada de la página del proyecto (ej: Anomaly detection, Big data, Sprint (internship)...)
    */
   label: string;
   updatedAt: string;
@@ -429,7 +429,7 @@ export interface PayloadLockedDocument {
         value: number | ProjectCategory;
       } | null)
     | ({
-        relationTo: 'project-filterSubtitles';
+        relationTo: 'project-filter-subtitles';
         value: number | ProjectFilterSubtitle;
       } | null)
     | ({
@@ -599,7 +599,7 @@ export interface ProjectCategoriesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "project-filterSubtitles_select".
+ * via the `definition` "project-filter-subtitles_select".
  */
 export interface ProjectFilterSubtitlesSelect<T extends boolean = true> {
   label?: T;

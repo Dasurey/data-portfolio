@@ -36,7 +36,6 @@ export const Projects: CollectionConfig = {
     {
       name: 'secondaryTitle',
       type: 'text',
-      required: true,
       localized: true,
       admin: {
         description: 'Título secundario que aparece en la columna de Skills',
@@ -78,7 +77,7 @@ export const Projects: CollectionConfig = {
     {
       name: 'filterSubtitles',
       type: 'relationship',
-      relationTo: 'project-filterSubtitles',
+      relationTo: 'project-filter-subtitles',
       required: true,
       hasMany: true,
       admin: {

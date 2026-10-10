@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-/** Los botones de filtro de /projects (Anomaly Detection, Sprint, Generative AI…). Cada proyecto elige cuáles tiene. */
+/** Etiqueta chica que aparece sobre el título del proyecto en las listas de /projects (Anomaly Detection, Sprint, Generative AI…). Cada proyecto elige cuáles tiene. */
 export const ProjectCategories: CollectionConfig = {
   slug: 'project-categories',
   labels: { singular: 'Category', plural: 'Categories' },
@@ -17,7 +17,7 @@ export const ProjectCategories: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
-      admin: { description: 'Texto del botón (ej: Anomaly Detection, Sprint, Generative AI).' },
+      admin: { description: 'Etiqueta chica que aparece sobre el título del proyecto en las listas (ej: Anomaly Detection, Sprint, Generative AI).' },
     },
   ],
 }
