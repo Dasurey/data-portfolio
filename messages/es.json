@@ -1,7 +1,13 @@
 {
   "Metadata": {
-    "title": "Portafolio",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+    "homeTitle": "Portafolio",
+    "homeDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+    "aboutTitle": "Sobre mí",
+    "aboutDescription": "Ingeniero de Datos y Analista. Lidero arquitecturas de datos y flujos de IA Generativa.",
+    "projectsTitle": "Proyectos",
+    "projectsDescription": "Trabajo de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
+    "teoTitle": "Teo",
+    "teoDescription": "Una página para lo que sucede fuera de la pantalla."
   },
   "Header": {
     "role": "Ingeniería · Analítica de datos"

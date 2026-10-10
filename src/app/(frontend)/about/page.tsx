@@ -9,9 +9,21 @@ import { Container } from '@/components/ui/Container';
 import { SITE_INITIALS, SITE_NAME } from '@/config/site';
 import type { Locale } from '@/i18n/config';
 import { getSiteSettings } from '@/lib/site-settings';
+import type { Metadata } from 'next';
 
 const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent';
 const photoClass = 'aspect-square w-full rounded-[18px] shadow-[0_22px_50px_-24px_rgba(23,26,38,0.45)]';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Metadata');
+
+  return {
+    title: {
+      absolute: `${SITE_NAME} — ${t('aboutTitle')}`,
+    },
+    description: t('generalDescription'),
+  };
+}
 
 // Sin <main> propio: el layout ya lo provee.
 export default async function AboutPage() {

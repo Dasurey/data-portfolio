@@ -81,7 +81,7 @@ export default buildConfig({
   ],
   email: resendAdapter({
     apiKey: process.env.RESEND_API_KEY || '',
-    defaultFromAddress: 'dario.asurey@gmail.com',
+    defaultFromAddress: 'onboarding@resend.dev',
     defaultFromName: 'Portafolio de Dario Asurey - Data',
   }),
 })

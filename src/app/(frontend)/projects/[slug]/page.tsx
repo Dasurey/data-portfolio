@@ -8,8 +8,40 @@ import { PageBanner } from '@/components/projects/PageBanner';
 import { ProjectContent } from '@/components/projects/ProjectContent';
 import { Container } from '@/components/ui/Container';
 import type { Locale } from '@/i18n/config';
+import type { Metadata } from 'next';
+import { SITE_NAME } from '@/config/site';
 
 type Props = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+
+  const payload = await getPayload({ config: configPromise });
+  const t = await getTranslations('Metadata');
+
+  const { docs } = await payload.find({
+    collection: 'projects',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    limit: 1,
+  });
+
+  const project = docs[0];
+
+  if (!project) {
+    return {};
+  }
+
+  return {
+    title: {
+      absolute: `${SITE_NAME} — ${project.title}`,
+    },
+    description: project.description ?? undefined,
+  };
+}
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;

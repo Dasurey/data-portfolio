@@ -12,6 +12,19 @@ import {
 import type { Locale } from '@/i18n/config';
 import type { Project } from '@/payload-types';
 import { getSiteSettings } from '@/lib/site-settings';
+import type { Metadata } from 'next';
+import { SITE_NAME } from '@/config/site';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Metadata');
+
+  return {
+    title: {
+      absolute: `${SITE_NAME} — ${t('projectsTitle')}`,
+    },
+    description: t('projectsDescription'),
+  };
+}
 
 // Una relación llega como id o como documento (según `depth`): lo normalizamos a id.
 type Ref = number | { id: number };

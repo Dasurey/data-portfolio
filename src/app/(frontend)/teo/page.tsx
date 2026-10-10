@@ -7,6 +7,19 @@ import configPromise from '@payload-config';
 import { PhotoGallery } from '@/components/teo/PhotoGallery';
 import { Container } from '@/components/ui/Container';
 import type { Locale } from '@/i18n/config';
+import type { Metadata } from 'next';
+import { SITE_NAME } from '@/config/site';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Metadata');
+
+  return {
+    title: {
+      absolute: `${SITE_NAME} — ${t('teoTitle')}`,
+    },
+    description: t('teoDescription'),
+  };
+}
 
 export default async function TeoPage() {
   const locale = (await getLocale()) as Locale;

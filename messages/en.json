@@ -84,8 +84,8 @@
     "badgeCurrent": "Current"
   },
   "Metadata": {
-    "title": "Portfolio",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+    "generalTitle": "Portfolio",
+    "generalDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
   },
   "Header": {
     "role": "Data analytics · engineering"

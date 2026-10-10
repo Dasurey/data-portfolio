@@ -44,10 +44,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: `${SITE_NAME} — ${t('title')}`,
+      default: `${SITE_NAME} — ${t('homeTitle')}`,
       template: `%s | ${SITE_NAME}`,
     },
-    description: t('description'),
+    description: t('homeDescription'),
   };
 }
 
