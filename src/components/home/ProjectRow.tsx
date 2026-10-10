@@ -13,6 +13,10 @@ export function ProjectRow({ project, index }: { project: Project; index: number
       ? 'lg:grid-cols-[44px_minmax(0,1fr)_minmax(0,1.05fr)_200px]'
       : 'lg:grid-cols-[44px_minmax(0,1fr)_minmax(0,1.4fr)]';
 
+  const categories = (project.categories ?? [])
+    .flatMap((category) => (typeof category === 'object' && category.label ? [category.label] : []))
+    .join(' · ');
+
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -21,9 +25,9 @@ export function ProjectRow({ project, index }: { project: Project; index: number
       <span className="pt-[5px] font-mono text-xs text-index">{String(index + 1).padStart(2, '0')}</span>
 
       <span>
-        {project.category && (
+        {categories && (
           <span className="mb-2 block text-[0.7rem] font-semibold uppercase tracking-[0.09em] text-accent">
-            {project.category}
+            {categories}
           </span>
         )}
         <span className="block font-display text-[1.28rem] font-bold leading-[1.25] tracking-[-0.02em] text-ink">

@@ -71,6 +71,8 @@ export interface Config {
     media: Media;
     experience: Experience;
     'project-filters': ProjectFilter;
+    'project-categories': ProjectCategory;
+    'project-filterSubtitles': ProjectFilterSubtitle;
     tools: Tool;
     documents: Document;
     users: User;
@@ -85,6 +87,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     'project-filters': ProjectFiltersSelect<false> | ProjectFiltersSelect<true>;
+    'project-categories': ProjectCategoriesSelect<false> | ProjectCategoriesSelect<true>;
+    'project-filterSubtitles': ProjectFilterSubtitlesSelect<false> | ProjectFilterSubtitlesSelect<true>;
     tools: ToolsSelect<false> | ToolsSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -154,13 +158,17 @@ export interface Project {
   slug: string;
   description: string;
   /**
-   * Etiqueta chica sobre el título (ej: Data Engineering).
+   * Etiqueta chica sobre el título (ej: Anomaly Detection).
    */
-  category?: string | null;
+  categories: (number | ProjectCategory)[];
   /**
    * Filtros a los que pertenece este proyecto (puede tener varios).
    */
   filters?: (number | ProjectFilter)[] | null;
+  /**
+   * Filtros que van a aparecer en la descripcion del proyecto arriba del todo como un subtitulo (puede tener varios).
+   */
+  filterSubtitles: (number | ProjectFilterSubtitle)[];
   /**
    * Se muestra como tarjeta grande en el Home. Marcá uno solo.
    */
@@ -205,12 +213,38 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-categories".
+ */
+export interface ProjectCategory {
+  id: number;
+  /**
+   * Texto del botón (ej: Anomaly Detection, Sprint, Generative AI).
+   */
+  label: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "project-filters".
  */
 export interface ProjectFilter {
   id: number;
   /**
    * Texto del botón (ej: AI, Real-Time NLP, Credit ML).
+   */
+  label: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-filterSubtitles".
+ */
+export interface ProjectFilterSubtitle {
+  id: number;
+  /**
+   * Texto del botón (ej: Anomaly detection, Big data, Sprint (internship)...)
    */
   label: string;
   updatedAt: string;
@@ -391,6 +425,14 @@ export interface PayloadLockedDocument {
         value: number | ProjectFilter;
       } | null)
     | ({
+        relationTo: 'project-categories';
+        value: number | ProjectCategory;
+      } | null)
+    | ({
+        relationTo: 'project-filterSubtitles';
+        value: number | ProjectFilterSubtitle;
+      } | null)
+    | ({
         relationTo: 'tools';
         value: number | Tool;
       } | null)
@@ -453,8 +495,9 @@ export interface ProjectsSelect<T extends boolean = true> {
   secondaryTitle?: T;
   slug?: T;
   description?: T;
-  category?: T;
+  categories?: T;
   filters?: T;
+  filterSubtitles?: T;
   featured?: T;
   metrics?:
     | T
@@ -541,6 +584,24 @@ export interface ExperienceSelect<T extends boolean = true> {
  * via the `definition` "project-filters_select".
  */
 export interface ProjectFiltersSelect<T extends boolean = true> {
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-categories_select".
+ */
+export interface ProjectCategoriesSelect<T extends boolean = true> {
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-filterSubtitles_select".
+ */
+export interface ProjectFilterSubtitlesSelect<T extends boolean = true> {
   label?: T;
   updatedAt?: T;
   createdAt?: T;

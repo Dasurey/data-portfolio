@@ -57,10 +57,14 @@ export const Projects: CollectionConfig = {
       localized: true,
     },
     {
-      name: 'category',
-      type: 'text',
-      localized: true,
-      admin: { description: 'Etiqueta chica sobre el título (ej: Data Engineering).' },
+      name: 'categories',
+      type: 'relationship',
+      relationTo: 'project-categories',
+      required: true,
+      hasMany: true,
+      admin: {
+        description: 'Etiqueta chica sobre el título (ej: Anomaly Detection).'
+      },
     },
     {
       name: 'filters',
@@ -69,6 +73,16 @@ export const Projects: CollectionConfig = {
       hasMany: true,
       admin: {
         description: 'Filtros a los que pertenece este proyecto (puede tener varios).',
+      },
+    },
+    {
+      name: 'filterSubtitles',
+      type: 'relationship',
+      relationTo: 'project-filterSubtitles',
+      required: true,
+      hasMany: true,
+      admin: {
+        description: 'Filtros que van a aparecer en la descripcion del proyecto arriba del todo como un subtitulo (puede tener varios).',
       },
     },
     {

@@ -54,8 +54,8 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   // Línea fija bajo la portada: los nombres de los filtros del proyecto.
-  const kicker = (project.filters ?? [])
-    .flatMap((filter) => (typeof filter === 'object' && filter.label ? [filter.label] : []))
+  const kicker = (project.filterSubtitles ?? [])
+    .flatMap((filterSubtitles) => (typeof filterSubtitles === 'object' && filterSubtitles.label ? [filterSubtitles.label] : []))
     .join(' · ');
 
   return (
