@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: {
       absolute: `${SITE_NAME} — ${t('aboutTitle')}`,
     },
-    description: t('generalDescription'),
+    description: t('aboutDescription'),
   };
 }
 

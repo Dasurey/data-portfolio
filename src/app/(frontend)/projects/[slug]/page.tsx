@@ -15,30 +15,21 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-
+  const locale = (await getLocale()) as Locale;
   const payload = await getPayload({ config: configPromise });
-  const t = await getTranslations('Metadata');
 
   const { docs } = await payload.find({
     collection: 'projects',
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
+    where: { slug: { equals: slug } },
     limit: 1,
+    locale,
   });
 
   const project = docs[0];
-
-  if (!project) {
-    return {};
-  }
+  if (!project) return {};
 
   return {
-    title: {
-      absolute: `${SITE_NAME} — ${project.title}`,
-    },
+    title: { absolute: `${SITE_NAME} — ${project.title}` },
     description: project.description ?? undefined,
   };
 }

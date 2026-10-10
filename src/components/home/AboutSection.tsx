@@ -25,7 +25,6 @@ export async function AboutSection() {
               width={600}
               height={600}
               className={`${photoClass} object-cover object-[center_18%]`}
-              loading="eager"
             />
           ) : (
             <div
