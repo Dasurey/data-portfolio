@@ -102,6 +102,7 @@ export default async function AboutPage() {
             <div className="space-y-[18px] pt-1 text-[1.04rem] text-ink-soft">
               <p className="max-w-[64ch] text-pretty">{t('bio1')}</p>
               <p className="max-w-[64ch] text-pretty">{t('bio2')}</p>
+              <p className="max-w-[64ch] text-pretty">{t('bio3')}</p>
             </div>
           </div>
         </Container>

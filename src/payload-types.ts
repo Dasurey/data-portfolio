@@ -186,7 +186,7 @@ export interface Project {
   /**
    * Seleccioná las tecnologías utilizadas en este proyecto o agregá una nueva.
    */
-  techStack?: (number | Tool)[] | null;
+  techStack: (number | Tool)[];
   repositoryUrl?: string | null;
   liveUrl?: string | null;
   image: number | Media;
@@ -319,12 +319,10 @@ export interface Experience {
         id?: string | null;
       }[]
     | null;
-  stack?:
-    | {
-        name?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  /**
+   * Seleccioná las tecnologías utilizadas en este proyecto o agregá una nueva.
+   */
+  techStack: (number | Tool)[];
   links?:
     | {
         label?: string | null;
@@ -563,12 +561,7 @@ export interface ExperienceSelect<T extends boolean = true> {
         text?: T;
         id?: T;
       };
-  stack?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
+  techStack?: T;
   links?:
     | T
     | {

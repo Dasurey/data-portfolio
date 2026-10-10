@@ -28,7 +28,16 @@ export const Experience: CollectionConfig = {
       // Las filas son las mismas en todos los idiomas; solo cambia el texto de cada una.
       fields: [{ name: 'text', type: 'textarea', localized: true }],
     },
-    { name: 'stack', type: 'array', fields: [{ name: 'name', type: 'text' }] },
+    {
+      name: 'techStack',
+      type: 'relationship',
+      relationTo: 'tools',
+      required: true,
+      hasMany: true,
+      admin: {
+        description: 'Seleccioná las tecnologías utilizadas en este proyecto o agregá una nueva.',
+      },
+    },
     {
       name: 'links',
       type: 'array',

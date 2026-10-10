@@ -104,10 +104,9 @@ export const Projects: CollectionConfig = {
       name: 'techStack',
       type: 'relationship',
       relationTo: 'tools',
+      required: true,
       hasMany: true,
-      label: 'Technical Stack',
       admin: {
-        allowCreate: true,
         description: 'Seleccioná las tecnologías utilizadas en este proyecto o agregá una nueva.',
       },
     },

@@ -1,16 +1,23 @@
 {
   "Metadata": {
     "homeTitle": "Portafolio",
-    "homeDescription": "Portafolio de Darío Asurey: analítica e ingeniería de datos, pipelines, data warehouses y dashboards.",
+    "homeDescription": "Portafolio de Darío Asurey: ingeniería y analítica de datos, creación de pipelines, modelado relacional y dashboards.",
     "aboutTitle": "Sobre mí",
-    "aboutDescription": "Ingeniero de Datos y Analista. Lidero arquitecturas de datos y flujos de IA Generativa.",
+    "aboutDescription": "Ingeniero y Analista de Datos. Estudiante de Sistemas (UTN) enfocado en estructurar bases de datos, automatización e integración de IA.",
     "projectsTitle": "Proyectos",
-    "projectsDescription": "Trabajo de ingeniería y análisis de datos, desde pipelines y data warehouses hasta dashboards.",
+    "projectsDescription": "Selección de proyectos de datos: desde la extracción y limpieza en pipelines hasta la visualización en dashboards interactivos.",
     "teoTitle": "Teo",
     "teoDescription": "Una página para lo que sucede fuera de la pantalla."
   },
   "Header": {
     "role": "Ingeniería · Analítica de datos"
+  },
+  "Footer": {
+    "blurb": "Ingeniería e analítica de datos. Abierto a conversar sobre datos, automatización e integración de IA.",
+    "pages": "Páginas",
+    "elsewhere": "En otros sitios",
+    "external": "(se abre en una pestaña nueva)",
+    "built": "Hecho con Next.js, Payload CMS y Neon"
   },
   "Home": {
     "role": "Ingeniero y Analista de Datos",
@@ -89,29 +96,26 @@
     "skillsEmpty": "Todavía no hay proyectos asociados.",
     
     "aboutKicker": "04 — Sobre mí",
-    "aboutP1": "Soy estudiante de Ingeniería en Sistemas de Información en la UTN FRBA y ayudante de cátedra de Paradigmas de Programación, con foco en analítica de datos y automatización de procesos.",
+    "aboutP1": "Especialista en estructurar bases de datos y diseñar pipelines analíticos. Combino esta ejecución técnica con sólidas bases formales como estudiante de Ingeniería en Sistemas (UTN FRBA) y ayudante de cátedra de Paradigmas de Programación, con un fuerte foco en analítica de datos y automatización de procesos.",
     "aboutP2": "Resuelvo problemas operativos con datos: limpio bases desordenadas, armo pipelines confiables y convierto los resultados en reportes visuales claros, integrando IA donde realmente aporta.",
-    "aboutP3": "Lo que me mueve es mejorar un proceso de forma medible para las personas que dependen de él.",
+    "aboutP3": "Mi objetivo es transformar la complejidad técnica en herramientas simples que potencien el trabajo en equipo y agilicen la toma de decisiones.",
     "aboutMore": "Más sobre mí",
-    "aboutContact": "Contactame",
-    "built": "Hecho con Next.js, Payload CMS y Neon"
+    "aboutContact": "Contactame"
   },
   "About": {
-    "title": "Hola, soy Dario Asurey",
-    "subtitle": "Especializado en infraestructuras de datos escalables.",
-    "description": "Llevo más de 5 años diseñando arquitecturas que permiten a las empresas tomar decisiones basadas en evidencia, no en intuición.",
-    "experience": "Experiencia Profesional",
-    "present": "Actualidad",
     "kicker": "Sobre mí",
-    "lead": "Ingeniero de Datos y Analista. Lidero arquitecturas de datos y flujos de IA Generativa.",
-    "bio1": "Aquí va el primer párrafo de tu historia extraído de tu repositorio...",
-    "bio2": "Aquí va el segundo párrafo donde hablas de tu experiencia actual...",
-    "experienceKicker": "Experiencia",
-    "experienceTitle": "De grado en Matemáticas a IA Generativa",
-    "experienceSub": "Expande un cargo para ver qué construí allí.",
-    "current": "hoy",
+    "title": "Hola, soy Dario Asurey",
+    "lead": "Ingeniero y Analista de Datos. Estudiante de Sistemas enfocado en estructurar bases de datos, automatizar procesos e integrar IA.",
+    "bio1": "Soy estudiante de Ingeniería en Sistemas de Información en la UTN FRBA y me desempeño como ayudante de cátedra en Paradigmas de Programación. Allí forjé mis bases en arquitectura de software, para luego enfocarme de lleno en los datos: extraerlos, estructurarlos y darles sentido.",
+    "bio2": "He llevado este enfoque analítico a entornos reales, participando en la gestión y análisis de datos e infraestructura en la Municipalidad de Tres de Febrero, y optimizando procesos administrativos y operativos en Empresas VAC SAS. En mi día a día, me enfoco en construir pipelines y reportes automatizados que faciliten el trabajo de los equipos y agilicen la toma de decisiones.",
+    "bio3": "Me motiva la intersección entre la ingeniería de software y la analítica moderna, buscando siempre diseñar soluciones que sean escalables, eficientes y, sobre todo, útiles para el negocio.",
     "selectedWork": "Trabajos destacados",
     "resume": "Currículum",
+    
+    "experienceKicker": "Experiencia",
+    "experienceTitle": "Estructurando datos y optimizando procesos",
+    "experienceSub": "Desplegá cada rol para ver mis responsabilidades y logros.",
+    "current": "Actualidad",
     "badgeCurrent": "Actual"
   },
   "Nav": {
@@ -127,14 +131,6 @@
     "label": "Idioma",
     "en": "English",
     "es": "Español"
-  },
-  "Footer": {
-    "pages": "Páginas",
-    "elsewhere": "En otros sitios",
-    "external": "(se abre en una pestaña nueva)",
-    "rights": "Todos los derechos reservados.",
-    "blurb": "Analítica e ingeniería de datos. Abierto a conversar sobre datos, automatización e IA aplicada.",
-    "built": "Hecho con Next.js, Payload CMS y Neon"
   },
   "Projects": {
     "liveDemo": "Explorar dashboard",
