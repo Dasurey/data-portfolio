@@ -167,7 +167,7 @@ export function ExperienceItem({ item, isLast, nowLabel, currentLabel, stackLabe
                     <p className="mt-3 font-mono text-[0.72rem] text-muted">{stack.join(' · ')}</p>
                   )*/}
                   {stack.length > 0 && (
-                    <div className="mt-auto">
+                    <div className="mt-[10px]">
                       <p className={`${micro} mb-[11px]`}>{stackLabel}</p>
 
                       <div className="flex flex-wrap gap-1.5">

@@ -132,7 +132,7 @@ export default async function AboutPage() {
                   isLast={index === experience.length - 1}
                   nowLabel={t('current')}
                   currentLabel={t('badgeCurrent')}
-                  stackLabel={t('skillsTools')}
+                  stackLabel={homeT('skillsTools')}
                 />
               </div>
             ))}
