@@ -133,6 +133,7 @@ export default async function AboutPage() {
                   nowLabel={t('current')}
                   currentLabel={t('badgeCurrent')}
                   stackLabel={homeT('skillsTools')}
+                  locale={locale}
                 />
               </div>
             ))}

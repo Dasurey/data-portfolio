@@ -10,22 +10,33 @@ type Props = {
   nowLabel: string; // "now" / "hoy"
   currentLabel: string; // "Current" / "Actual"
   stackLabel: string;
+  locale: string;
 };
 
-// UTC: evita que un "1 de enero" se vea como el año anterior en horario argentino.
-const yearOf = (iso: string) => new Date(iso).getUTCFullYear();
-const micro = 'font-mono text-[10px] uppercase tracking-[0.14em] text-muted';
-
-/** "2018–19", "2019" (mismo año) o "2024–now": el formato del timeline de la base. */
-function yearRange(start: string, end: string | null | undefined, nowLabel: string) {
-  const from = yearOf(start);
-  if (!end) return `${from}–${nowLabel}`;
-
-  const to = yearOf(end);
-  return from === to ? `${from}` : `${from}–${String(to).slice(-2)}`;
+function monthYear(iso: string, locale: string) {
+  return new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(iso));
 }
 
-export function ExperienceItem({ item, isLast, nowLabel, currentLabel, stackLabel }: Props) {
+function dateRange(
+  start: string,
+  end: string | null | undefined,
+  locale: string,
+  nowLabel: string,
+) {
+  const from = monthYear(start, locale);
+
+  if (!end) return `${from}–${nowLabel}`;
+
+  return `${from}–${monthYear(end, locale)}`;
+}
+
+const micro = 'font-mono text-[10px] uppercase tracking-[0.14em] text-muted';
+
+export function ExperienceItem({ item, isLast, nowLabel, currentLabel, stackLabel, locale }: Props) {
   const isCurrent = !item.endDate;
   const panelId = useId();
 
@@ -76,7 +87,7 @@ export function ExperienceItem({ item, isLast, nowLabel, currentLabel, stackLabe
           isCurrent ? 'font-semibold text-accent' : 'text-muted'
         }`}
       >
-        {yearRange(item.startDate, item.endDate, nowLabel)}
+        {dateRange(item.startDate, item.endDate, locale, nowLabel)}
       </div>
 
       {/* .tl-rail + .tl-node: la línea termina en el último nodo */}
