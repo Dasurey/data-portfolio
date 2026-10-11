@@ -14,11 +14,16 @@ type Props = {
 };
 
 function monthYear(iso: string, locale: string) {
-  return new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', {
+  const formatted = new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'en-US', {
     month: 'short',
     year: 'numeric',
     timeZone: 'UTC',
   }).format(new Date(iso));
+
+  const [month, year] = formatted.split(' ');
+  const normalizedMonth = month.charAt(0).toLocaleUpperCase(locale) + month.slice(1);
+
+  return `${normalizedMonth.replace(/\.$/, '')}. ${year}`;
 }
 
 function dateRange(
