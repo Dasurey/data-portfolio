@@ -29,6 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AboutPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations('About');
+  const homeT = await getTranslations('Home');
   const payload = await getPayload({ config: configPromise });
   const { photo, resumeUrl } = await getSiteSettings();
 
@@ -131,6 +132,7 @@ export default async function AboutPage() {
                   isLast={index === experience.length - 1}
                   nowLabel={t('current')}
                   currentLabel={t('badgeCurrent')}
+                  stackLabel={t('skillsTools')}
                 />
               </div>
             ))}

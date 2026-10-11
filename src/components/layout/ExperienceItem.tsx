@@ -9,10 +9,12 @@ type Props = {
   isLast: boolean;
   nowLabel: string; // "now" / "hoy"
   currentLabel: string; // "Current" / "Actual"
+  stackLabel: string;
 };
 
 // UTC: evita que un "1 de enero" se vea como el año anterior en horario argentino.
 const yearOf = (iso: string) => new Date(iso).getUTCFullYear();
+const micro = 'font-mono text-[10px] uppercase tracking-[0.14em] text-muted';
 
 /** "2018–19", "2019" (mismo año) o "2024–now": el formato del timeline de la base. */
 function yearRange(start: string, end: string | null | undefined, nowLabel: string) {
@@ -23,7 +25,7 @@ function yearRange(start: string, end: string | null | undefined, nowLabel: stri
   return from === to ? `${from}` : `${from}–${String(to).slice(-2)}`;
 }
 
-export function ExperienceItem({ item, isLast, nowLabel, currentLabel }: Props) {
+export function ExperienceItem({ item, isLast, nowLabel, currentLabel, stackLabel }: Props) {
   const isCurrent = !item.endDate;
   const panelId = useId();
 
@@ -161,10 +163,25 @@ export function ExperienceItem({ item, isLast, nowLabel, currentLabel }: Props) 
                   )}
 
                   {/* .exp-stack */}
-                  {stack.length > 0 && (
+                  {/*stack.length > 0 && (
                     <p className="mt-3 font-mono text-[0.72rem] text-muted">{stack.join(' · ')}</p>
-                  )}
+                  )*/}
+                  {stack.length > 0 && (
+                    <div className="mt-auto">
+                      <p className={`${micro} mb-[11px]`}>{stackLabel}</p>
 
+                      <div className="flex flex-wrap gap-1.5">
+                        {stack.map((tool) => (
+                          <span
+                            key={tool}
+                            className="inline-block rounded-[7px] border border-[#eceef6] bg-[#f4f5fa] px-2.5 py-1 text-[0.74rem] font-medium text-muted"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   {/* .pill-row / .pill--lg */}
                   {links.length > 0 && (
                     <div className="mt-3 flex flex-wrap gap-[7px]">
